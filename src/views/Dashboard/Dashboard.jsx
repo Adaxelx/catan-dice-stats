@@ -26,7 +26,7 @@ const Dashboard = () => {
     <Container className="p-0">
       <StatsBoard stats={stats} />
       <Board stats={stats} setStats={setStats} />
-      <Button variant="primary" onClick={handleSaveToFile}>
+      <Button variant="primary" onClick={() => {}}>
         Zapisz do pliku
       </Button>
     </Container>
