@@ -13,9 +13,9 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <Container>
+    <Container className="p-0">
       <StatsBoard stats={stats} />
-      <Board />
+      <Board stats={stats} setStats={setStats} />
       <Button variant="primary" onClick={() => {}}>
         Zapisz do pliku
       </Button>
