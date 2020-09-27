@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/Adaxelx/dice-stats/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/Adaxelx/dice-stats/static/js/main.c6362065.chunk.js",
-    "main.js.map": "/Adaxelx/dice-stats/static/js/main.c6362065.chunk.js.map",
-    "runtime-main.js": "/Adaxelx/dice-stats/static/js/runtime-main.c4d71815.js",
-    "runtime-main.js.map": "/Adaxelx/dice-stats/static/js/runtime-main.c4d71815.js.map",
-    "static/css/2.8aa5a7f8.chunk.css": "/Adaxelx/dice-stats/static/css/2.8aa5a7f8.chunk.css",
-    "static/js/2.b164a48f.chunk.js": "/Adaxelx/dice-stats/static/js/2.b164a48f.chunk.js",
-    "static/js/2.b164a48f.chunk.js.map": "/Adaxelx/dice-stats/static/js/2.b164a48f.chunk.js.map",
-    "index.html": "/Adaxelx/dice-stats/index.html",
-    "precache-manifest.65215585b23c7076273388e522ffe6ee.js": "/Adaxelx/dice-stats/precache-manifest.65215585b23c7076273388e522ffe6ee.js",
-    "service-worker.js": "/Adaxelx/dice-stats/service-worker.js",
-    "static/css/2.8aa5a7f8.chunk.css.map": "/Adaxelx/dice-stats/static/css/2.8aa5a7f8.chunk.css.map",
-    "static/css/main.5ecd60fb.chunk.css.map": "/Adaxelx/dice-stats/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.b164a48f.chunk.js.LICENSE.txt": "/Adaxelx/dice-stats/static/js/2.b164a48f.chunk.js.LICENSE.txt"
+    "main.css": "/dice-stats/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/dice-stats/static/js/main.1422838c.chunk.js",
+    "main.js.map": "/dice-stats/static/js/main.1422838c.chunk.js.map",
+    "runtime-main.js": "/dice-stats/static/js/runtime-main.0d6ac1f2.js",
+    "runtime-main.js.map": "/dice-stats/static/js/runtime-main.0d6ac1f2.js.map",
+    "static/css/2.8aa5a7f8.chunk.css": "/dice-stats/static/css/2.8aa5a7f8.chunk.css",
+    "static/js/2.4f049274.chunk.js": "/dice-stats/static/js/2.4f049274.chunk.js",
+    "static/js/2.4f049274.chunk.js.map": "/dice-stats/static/js/2.4f049274.chunk.js.map",
+    "index.html": "/dice-stats/index.html",
+    "precache-manifest.400a4ee7597a5bbc35525b29c87a74a1.js": "/dice-stats/precache-manifest.400a4ee7597a5bbc35525b29c87a74a1.js",
+    "service-worker.js": "/dice-stats/service-worker.js",
+    "static/css/2.8aa5a7f8.chunk.css.map": "/dice-stats/static/css/2.8aa5a7f8.chunk.css.map",
+    "static/css/main.5ecd60fb.chunk.css.map": "/dice-stats/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.4f049274.chunk.js.LICENSE.txt": "/dice-stats/static/js/2.4f049274.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.c4d71815.js",
+    "static/js/runtime-main.0d6ac1f2.js",
     "static/css/2.8aa5a7f8.chunk.css",
-    "static/js/2.b164a48f.chunk.js",
+    "static/js/2.4f049274.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.c6362065.chunk.js"
+    "static/js/main.1422838c.chunk.js"
   ]
 }
