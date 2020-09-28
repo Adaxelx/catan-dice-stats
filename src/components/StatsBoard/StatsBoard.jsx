@@ -7,7 +7,7 @@ import {
   StyledBody,
 } from "./StatsBoard.css";
 
-const StatsBoard = ({ stats, playersCount }) => {
+const StatsBoard = ({ stats, playersCount, history }) => {
   const countOfDiceRolls = Object.keys(stats)
     .map((key) => stats[key])
     .reduce((acc, number) => acc + number, 0);
@@ -42,6 +42,12 @@ const StatsBoard = ({ stats, playersCount }) => {
                 </StyledStatDisplay>
               ))}
             </StyledDiceStats>
+            <p className="mt-3 mb-0">
+              {history.map(
+                (number, i) =>
+                  `${number}${i !== history.length - 1 ? ", " : ""}`
+              )}
+            </p>
           </StyledBody>
         </Accordion.Collapse>
       </Card>

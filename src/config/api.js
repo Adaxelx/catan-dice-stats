@@ -1,7 +1,7 @@
 const backendUrl = process.env.REACT_APP_BACKEND;
 
 const proxy = {
-  FILE: `${backendUrl}file/`,
+  GAME: `${backendUrl}game/`,
 };
 
 export default proxy;

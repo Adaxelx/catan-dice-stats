@@ -6,6 +6,8 @@ import { saveFile } from "functions";
 
 const Dashboard = () => {
   const [stats, setStats] = useState({});
+  const [history, setHistory] = useState([]);
+  const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -17,13 +19,23 @@ const Dashboard = () => {
   }, []);
 
   const handleSaveToFile = async (e) => {
+    setLoading(true);
+    setError(false);
     e.preventDefault();
+    const countOfDiceRolls = Object.keys(stats)
+      .map((key) => stats[key])
+      .reduce((acc, number) => acc + number, 0);
     try {
-      const response = await saveFile(stats);
+      const response = await saveFile({
+        stats,
+        countOfDiceRolls,
+        history,
+      });
       setSuccess(response.message);
     } catch (err) {
       setError(true);
     }
+    setLoading(false);
   };
 
   const message = loading ? (
@@ -36,8 +48,8 @@ const Dashboard = () => {
 
   return (
     <Container className="p-0">
-      <StatsBoard stats={stats} />
-      <Board stats={stats} setStats={setStats} />
+      <StatsBoard stats={stats} history={history} />
+      <Board stats={stats} setStats={setStats} setHistory={setHistory} />
       {message}
       <Button disabled={loading} variant="primary" onClick={handleSaveToFile}>
         Zapisz do pliku
