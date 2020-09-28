@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Alert } from "react-bootstrap";
 import { Board, StatsBoard } from "components";
 import diceNumbers from "constants/diceNumbers";
-import fs from "fs";
+import { saveFile } from "functions";
 
 const Dashboard = () => {
   const [stats, setStats] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     const object = {};
@@ -13,20 +16,30 @@ const Dashboard = () => {
     setStats(object);
   }, []);
 
-  //   const handleSaveToFile = async () => {
-  //     const date = new Date();
-  //     console.log(fs);
-  //     // await fs.writeFile(
-  //     //   `data/catan-${date.toLocaleDateString("pl-PL")}.json`,
-  //     //   JSON.stringify(stats)
-  //     // );
-  //   };
+  const handleSaveToFile = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await saveFile(stats);
+      setSuccess(response.message);
+    } catch (err) {
+      setError(true);
+    }
+  };
+
+  const message = loading ? (
+    <Alert variant="info">Trwa przesyłanie...</Alert>
+  ) : error ? (
+    <Alert variant="danger">Błąd przesyłania</Alert>
+  ) : success ? (
+    <Alert variant="success">{success}</Alert>
+  ) : null;
 
   return (
     <Container className="p-0">
       <StatsBoard stats={stats} />
       <Board stats={stats} setStats={setStats} />
-      <Button variant="primary" onClick={() => {}}>
+      {message}
+      <Button disabled={loading} variant="primary" onClick={handleSaveToFile}>
         Zapisz do pliku
       </Button>
     </Container>
