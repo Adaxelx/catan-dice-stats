@@ -1,17 +1,22 @@
-import React, { useState } from "react";
-import { Form, InputGroup, Col, Button } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Form, Button, Alert } from "react-bootstrap";
 import { emptyDiceStats } from "constants/diceNumbers";
 import { FormGroup } from "../";
 
-const PlayersForm = ({ setPlayers }) => {
+const PlayersForm = ({ setPlayers, players }) => {
   const [validated, setValidated] = useState("");
+
   const [name, setName] = useState("");
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState("1");
+
+  useEffect(() => {
+    setIndex(players.length + 1);
+  }, [players.length]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
-    if (form.checkValidity === false) {
+    if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     } else {
@@ -20,7 +25,6 @@ const PlayersForm = ({ setPlayers }) => {
           ...prevState,
           { name, index, stats: emptyDiceStats },
         ];
-        prevArray.sort((a, b) => a.index - b.index);
         return prevArray;
       });
     }
@@ -42,6 +46,7 @@ const PlayersForm = ({ setPlayers }) => {
         setValue={setIndex}
         placeholder="Który w kolejce"
         invalid="Podaj który w kolejce jest gracz"
+        disabled
       />
       <Button type="submit">Dodaj gracza</Button>
     </Form>
