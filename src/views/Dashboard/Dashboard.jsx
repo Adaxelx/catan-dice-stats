@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Button, Alert } from "react-bootstrap";
-import { Board, StatsBoard, PlayersForm } from "components";
+import { Board, StatsBoard, PlayersForm, PlayersStats } from "components";
 import { emptyDiceStats } from "constants/diceNumbers";
 import { saveFile } from "functions";
 
@@ -8,6 +8,8 @@ const Dashboard = () => {
   const [stats, setStats] = useState({});
   const [history, setHistory] = useState([]);
   const [players, setPlayers] = useState([]);
+
+  const [isStarted, setIsStarted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -46,13 +48,32 @@ const Dashboard = () => {
 
   return (
     <Container className="p-0">
-      <PlayersForm setPlayers={setPlayers} />
-      <StatsBoard stats={stats} history={history} />
-      <Board stats={stats} setStats={setStats} setHistory={setHistory} />
-      {message}
-      <Button disabled={loading} variant="primary" onClick={handleSaveToFile}>
-        Zapisz do pliku
-      </Button>
+      {isStarted ? (
+        <>
+          <PlayersStats players={players} />
+          <StatsBoard stats={stats} history={history} />
+          <Board stats={stats} setStats={setStats} setHistory={setHistory} />
+          {message}
+          <Button
+            disabled={loading}
+            variant="primary"
+            onClick={handleSaveToFile}
+          >
+            Zapisz do pliku
+          </Button>
+        </>
+      ) : (
+        <>
+          <PlayersForm setPlayers={setPlayers} />
+          <Button
+            variant="secondary"
+            className="mt-3"
+            onClick={() => setIsStarted(true)}
+          >
+            Zacznij gre
+          </Button>
+        </>
+      )}
     </Container>
   );
 };

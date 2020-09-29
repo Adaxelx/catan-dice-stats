@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { Form, InputGroup, Col, Button } from "react-bootstrap";
 import { emptyDiceStats } from "constants/diceNumbers";
+import { FormGroup } from "../";
 
 const PlayersForm = ({ setPlayers }) => {
   const [validated, setValidated] = useState("");
   const [name, setName] = useState("");
   const [index, setIndex] = useState(1);
-
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setName(value);
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -33,33 +29,20 @@ const PlayersForm = ({ setPlayers }) => {
   return (
     <Form validated={validated} noValidate onSubmit={handleSubmit}>
       <Form.Label>Dodaj gracza</Form.Label>
-      <Form.Group controlId="name">
-        <Form.Control
-          required
-          type="text"
-          value={name}
-          onChange={handleChange}
-          placeholder="Imię"
-        />
-        <Form.Control.Feedback type="invalid">
-          Podaj imie gracza
-        </Form.Control.Feedback>
-      </Form.Group>
-      <Form.Group controlId="name">
-        <Form.Control
-          required
-          type="number"
-          value={index}
-          onChange={(e) => {
-            const value = e.target.value;
-            setIndex(value);
-          }}
-          placeholder="Który w kolejce"
-        />
-        <Form.Control.Feedback type="invalid">
-          Podaj który w kolejce jest gracz
-        </Form.Control.Feedback>
-      </Form.Group>
+      <FormGroup
+        type="text"
+        value={name}
+        setValue={setName}
+        placeholder="Imię"
+        invalid="Podaj imie gracza"
+      />
+      <FormGroup
+        type="number"
+        value={index}
+        setValue={setIndex}
+        placeholder="Który w kolejce"
+        invalid="Podaj który w kolejce jest gracz"
+      />
       <Button type="submit">Dodaj gracza</Button>
     </Form>
   );
