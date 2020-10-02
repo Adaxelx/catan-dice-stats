@@ -8,7 +8,7 @@ import {
   StyledStats,
 } from "./StatsBoard.css";
 
-const StatsBoard = ({ throws }) => {
+const StatsBoard = ({ throws, isExtension }) => {
   return (
     <Accordion>
       <Card>
@@ -20,14 +20,15 @@ const StatsBoard = ({ throws }) => {
         <Accordion.Collapse eventKey="0">
           <StyledBody className="p-0 py-3">
             <p className="text-center">
-              Liczba rzutów łącznie: {throws.length}
+              Liczba rzutów łącznie:{" "}
+              {isExtension ? throws.length / 2 : throws.length}
             </p>
             <StyledDiceStats>
               {throws.map(({ player, value }, i) => {
                 return (
                   <StyledStatDisplay>
                     <StyledDiceNumber>Rzut: {i + 1}</StyledDiceNumber>
-                    <StyledStats>Liczba oczek: {value}</StyledStats>
+                    <StyledStats>Wynik rzutu: {value}</StyledStats>
                     <StyledStats align="right">
                       Rzucił {player.name}
                     </StyledStats>

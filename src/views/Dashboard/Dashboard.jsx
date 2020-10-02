@@ -33,6 +33,7 @@ const Dashboard = () => {
       const response = await saveFile({
         throws: throwsApi,
         players: players.map(({ index }) => index),
+        isExtension,
       });
       setSuccess(response.message);
     } catch (err) {
@@ -78,9 +79,15 @@ const Dashboard = () => {
     <Container className="p-0">
       {isStarted ? (
         <>
-          <h3>{`Kolejka ${queueCount}, gracz ${activePlayer.name}`}</h3>
+          <h3>{`Kolejka ${queueCount}, gracz ${activePlayer.name} ${
+            isExtension
+              ? !throws.length % 2
+                ? "rzut kostką z liczbami"
+                : "rzut kostką wydarzeń"
+              : null
+          }`}</h3>
           <PlayersStats players={players} />
-          <StatsBoard throws={throws} />
+          <StatsBoard throws={throws} isExtension={isExtension} />
           <Board
             throws={throws}
             setThrows={setThrows}

@@ -11,34 +11,27 @@ const Board = ({ setThrows, activePlayer, isExtension, throws }) => {
   };
 
   return (
-    <>
-      {isExtension && (
-        <p>{`Rzut kością ${
-          throws.length % 2 ? "wydarzeń" : "z liczbami"
-        } gracza ${activePlayer.name}`}</p>
-      )}
-      <StyledBoard isExtension={isExtension}>
-        {diceNumbers.map((number) => (
+    <StyledBoard isExtension={isExtension}>
+      {diceNumbers.map((number) => (
+        <StyledTile
+          disabled={isExtension && throws.length % 2}
+          onClick={() => handleClick(number)}
+          key={number}
+        >
+          {number}
+        </StyledTile>
+      ))}
+      {isExtension &&
+        citiesAndKnights.map((diceRoll) => (
           <StyledTile
-            disabled={isExtension && throws.length % 2}
-            onClick={() => handleClick(number)}
-            key={number}
+            onClick={() => handleClick(diceRoll.name)}
+            key={diceRoll.name}
+            disabled={isExtension && !(throws.length % 2)}
           >
-            {number}
+            {diceRoll.icon}
           </StyledTile>
         ))}
-        {isExtension &&
-          citiesAndKnights.map((diceRoll) => (
-            <StyledTile
-              onClick={() => handleClick(diceRoll.name)}
-              key={diceRoll.name}
-              disabled={isExtension && !(throws.length % 2)}
-            >
-              {diceRoll.icon}
-            </StyledTile>
-          ))}
-      </StyledBoard>
-    </>
+    </StyledBoard>
   );
 };
 
