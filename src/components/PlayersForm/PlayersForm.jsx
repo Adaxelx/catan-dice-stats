@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { emptyDiceStats } from "constants/diceNumbers";
-import { FormGroup } from "../";
+import { FormGroup, CardForm } from "../";
 
 const PlayersForm = ({ setPlayers, players }) => {
   const [validated, setValidated] = useState("");
@@ -21,7 +21,7 @@ const PlayersForm = ({ setPlayers, players }) => {
       event.stopPropagation();
     } else {
       setPlayers((prevState) => {
-        const prevArray = [...prevState, { name, index }];
+        const prevArray = [...prevState, { name, index, buildings: [] }];
         return prevArray;
       });
     }
@@ -45,6 +45,7 @@ const PlayersForm = ({ setPlayers, players }) => {
         invalid="Podaj który w kolejce jest gracz"
         disabled
       />
+
       <Button type="submit">Dodaj gracza</Button>
     </Form>
   );

@@ -6,6 +6,7 @@ import {
   PlayersForm,
   PlayersStats,
   PlayersList,
+  CardForm,
 } from "components";
 import { emptyDiceStats } from "constants/diceNumbers";
 import { saveFile } from "functions";
@@ -19,6 +20,7 @@ const Dashboard = () => {
   const [success, setSuccess] = useState(false);
   const [isExtension, setIsExtension] = useState(false);
   const [queue, setQueue] = useState([]);
+  const [buildings, setBuildings] = useState([]);
 
   const handleSaveToFile = async (e) => {
     setLoading(true);
@@ -75,6 +77,8 @@ const Dashboard = () => {
     setIsStarted(true);
   };
 
+  console.log(players);
+
   return (
     <Container className="p-0">
       {isStarted ? (
@@ -114,6 +118,14 @@ const Dashboard = () => {
             value={isExtension}
             onClick={() => setIsExtension((prevState) => !prevState)}
           />
+          {!!players.length && (
+            <CardForm
+              throws={throws}
+              isExtension={isExtension}
+              players={players}
+              setPlayers={setPlayers}
+            />
+          )}
           {!!players.length && (
             <Button variant="secondary" className="mt-3" onClick={handleStart}>
               Zacznij gre

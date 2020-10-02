@@ -22,4 +22,16 @@ export const StyledTile = styled.div`
   justify-content: center;
   color: #8fc693;
   ${({ disabled }) => disabled && "pointer-events: none;"}
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    top: 0;
+    left: 0;
+    opacity: ${({ isActive }) => (isActive ? 0.6 : 0)};
+  }
 `;
