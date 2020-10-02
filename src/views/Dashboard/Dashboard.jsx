@@ -11,28 +11,12 @@ import { emptyDiceStats } from "constants/diceNumbers";
 import { saveFile } from "functions";
 
 const Dashboard = () => {
-  const [stats, setStats] = useState({});
-  const [history, setHistory] = useState([]);
+  const [throws, setThrows] = useState([]);
   const [players, setPlayers] = useState([]);
-
   const [isStarted, setIsStarted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
-
-  const countOfDiceRolls = useMemo(
-    () =>
-      Object.keys(stats)
-        .map((key) => stats[key])
-        .reduce((acc, number) => acc + number, 0),
-    [stats]
-  );
-
-  useEffect(() => {
-    setStats(emptyDiceStats);
-  }, []);
-
-  console.log(players);
 
   const handleSaveToFile = async (e) => {
     setLoading(true);
@@ -41,9 +25,7 @@ const Dashboard = () => {
 
     try {
       const response = await saveFile({
-        stats,
-        countOfDiceRolls,
-        history,
+        throws,
       });
       setSuccess(response.message);
     } catch (err) {
@@ -60,16 +42,16 @@ const Dashboard = () => {
     <Alert variant="success">{success}</Alert>
   ) : null;
 
-  const queue = useMemo(
-    () => Math.floor(countOfDiceRolls / players.length) + 1,
-    [countOfDiceRolls, players.length]
-  );
+  const queue = useMemo(() => Math.floor(throws.length / players.length) + 1, [
+    players.length,
+    throws.length,
+  ]);
 
   const activePlayer = useMemo(() => {
     return players.find(
-      (player) => player.index - 1 === countOfDiceRolls % players.length
+      (player) => player.index - 1 === throws.length % players.length
     );
-  }, [countOfDiceRolls, players]);
+  }, [players, throws.length]);
 
   return (
     <Container className="p-0">
@@ -77,14 +59,8 @@ const Dashboard = () => {
         <>
           <h3>{`Kolejka ${queue}, gracz ${activePlayer.name}`}</h3>
           <PlayersStats players={players} />
-          <StatsBoard stats={stats} history={history} />
-          <Board
-            stats={stats}
-            setStats={setStats}
-            setHistory={setHistory}
-            setPlayers={setPlayers}
-            activePlayer={activePlayer}
-          />
+          <StatsBoard throws={throws} />
+          <Board setThrows={setThrows} activePlayer={activePlayer} />
           {message}
           <Button
             disabled={loading}
@@ -98,13 +74,15 @@ const Dashboard = () => {
         <>
           <PlayersList players={players} setPlayers={setPlayers} />
           <PlayersForm setPlayers={setPlayers} players={players} />
-          <Button
-            variant="secondary"
-            className="mt-3"
-            onClick={() => setIsStarted(true)}
-          >
-            Zacznij gre
-          </Button>
+          {!!players.length && (
+            <Button
+              variant="secondary"
+              className="mt-3"
+              onClick={() => setIsStarted(true)}
+            >
+              Zacznij gre
+            </Button>
+          )}
         </>
       )}
     </Container>

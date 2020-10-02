@@ -5,21 +5,10 @@ import {
   StyledStatDisplay,
   StyledDiceNumber,
   StyledBody,
+  StyledStats,
 } from "./StatsBoard.css";
 
-const StatsBoard = ({ stats, playersCount, history }) => {
-  const countOfDiceRolls = Object.keys(stats)
-    .map((key) => stats[key])
-    .reduce((acc, number) => acc + number, 0);
-
-  const percentageValue = (value) => {
-    if (countOfDiceRolls) {
-      return `${Math.floor((value / countOfDiceRolls) * 100)}%`;
-    }
-    return `0%`;
-  };
-
-  const queueCount = countOfDiceRolls / playersCount;
+const StatsBoard = ({ throws }) => {
   return (
     <Accordion>
       <Card>
@@ -31,23 +20,22 @@ const StatsBoard = ({ stats, playersCount, history }) => {
         <Accordion.Collapse eventKey="0">
           <StyledBody className="p-0 py-3">
             <p className="text-center">
-              Liczba rzutów łącznie: {countOfDiceRolls}
+              Liczba rzutów łącznie: {throws.length}
             </p>
             <StyledDiceStats>
-              {Object.keys(stats).map((key) => (
-                <StyledStatDisplay>
-                  <StyledDiceNumber>{key}</StyledDiceNumber>
-                  <span>{stats[key]}</span>
-                  {percentageValue(stats[key])}
-                </StyledStatDisplay>
-              ))}
+              {throws.map(({ player, value }, i) => {
+                console.log(player, value);
+                return (
+                  <StyledStatDisplay>
+                    <StyledDiceNumber>Rzut: {i + 1}</StyledDiceNumber>
+                    <StyledStats>Liczba oczek: {value}</StyledStats>
+                    <StyledStats align="right">
+                      Rzucił {player.name}
+                    </StyledStats>
+                  </StyledStatDisplay>
+                );
+              })}
             </StyledDiceStats>
-            <p className="mt-3 mb-0">
-              {history.map(
-                (number, i) =>
-                  `${number}${i !== history.length - 1 ? ", " : ""}`
-              )}
-            </p>
           </StyledBody>
         </Accordion.Collapse>
       </Card>

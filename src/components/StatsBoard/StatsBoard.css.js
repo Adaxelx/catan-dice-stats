@@ -3,8 +3,7 @@ import { Card } from "react-bootstrap";
 
 export const StyledDiceStats = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   column-gap: 5px;
   row-gap: 5px;
   background-color: #fdd906;
@@ -24,7 +23,12 @@ export const StyledBody = styled(Card.Body)`
   background-color: #fdd906 !important;
 `;
 
-export const StyledDiceNumber = styled.p`
+export const StyledStats = styled.span`
+  flex: 1 1 0px;
+  text-align: ${({ align }) => (align ? align : "center")};
+`;
+
+export const StyledDiceNumber = styled(StyledStats)`
   margin: 0;
   font-size: 1.5rem;
   color: #8fc693;

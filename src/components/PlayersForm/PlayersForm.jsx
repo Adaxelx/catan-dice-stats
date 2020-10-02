@@ -21,10 +21,7 @@ const PlayersForm = ({ setPlayers, players }) => {
       event.stopPropagation();
     } else {
       setPlayers((prevState) => {
-        const prevArray = [
-          ...prevState,
-          { name, index, stats: emptyDiceStats },
-        ];
+        const prevArray = [...prevState, { name, index }];
         return prevArray;
       });
     }

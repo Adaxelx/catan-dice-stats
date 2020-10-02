@@ -2,13 +2,12 @@ import React, { useCallback } from "react";
 import { StyledBoard, StyledTile } from "./Board.css";
 import diceNumbers from "constants/diceNumbers";
 
-const Board = ({ setStats, stats, setHistory, setPlayers, activePlayer }) => {
+const Board = ({ setThrows, activePlayer }) => {
   const handleClick = (id) => {
-    setHistory((prevState) => [...prevState, id]);
-
-    const newObject = { ...stats };
-    newObject[id] += 1;
-    setStats(newObject);
+    setThrows((prevState) => [
+      ...prevState,
+      { value: id, player: activePlayer },
+    ]);
   };
 
   return (
