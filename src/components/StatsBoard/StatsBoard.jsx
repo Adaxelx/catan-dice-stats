@@ -24,7 +24,6 @@ const StatsBoard = ({ throws }) => {
             </p>
             <StyledDiceStats>
               {throws.map(({ player, value }, i) => {
-                console.log(player, value);
                 return (
                   <StyledStatDisplay>
                     <StyledDiceNumber>Rzut: {i + 1}</StyledDiceNumber>

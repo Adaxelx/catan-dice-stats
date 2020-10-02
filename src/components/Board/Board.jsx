@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
 import { StyledBoard, StyledTile } from "./Board.css";
-import diceNumbers from "constants/diceNumbers";
+import diceNumbers, { citiesAndKnights } from "constants/diceNumbers";
 
-const Board = ({ setThrows, activePlayer }) => {
+const Board = ({ setThrows, activePlayer, isExtension, throws }) => {
   const handleClick = (id) => {
     setThrows((prevState) => [
       ...prevState,
@@ -11,13 +11,34 @@ const Board = ({ setThrows, activePlayer }) => {
   };
 
   return (
-    <StyledBoard>
-      {diceNumbers.map((number) => (
-        <StyledTile onClick={() => handleClick(number)} key={number}>
-          {number}
-        </StyledTile>
-      ))}
-    </StyledBoard>
+    <>
+      {isExtension && (
+        <p>{`Rzut kością ${
+          throws.length % 2 ? "wydarzeń" : "z liczbami"
+        } gracza ${activePlayer.name}`}</p>
+      )}
+      <StyledBoard isExtension={isExtension}>
+        {diceNumbers.map((number) => (
+          <StyledTile
+            disabled={isExtension && throws.length % 2}
+            onClick={() => handleClick(number)}
+            key={number}
+          >
+            {number}
+          </StyledTile>
+        ))}
+        {isExtension &&
+          citiesAndKnights.map((diceRoll) => (
+            <StyledTile
+              onClick={() => handleClick(diceRoll.name)}
+              key={diceRoll.name}
+              disabled={isExtension && !(throws.length % 2)}
+            >
+              {diceRoll.icon}
+            </StyledTile>
+          ))}
+      </StyledBoard>
+    </>
   );
 };
 

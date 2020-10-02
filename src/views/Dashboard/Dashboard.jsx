@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Container, Button, Alert } from "react-bootstrap";
+import { Container, Button, Alert, Form } from "react-bootstrap";
 import {
   Board,
   StatsBoard,
@@ -17,15 +17,22 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [isExtension, setIsExtension] = useState(false);
+  const [queue, setQueue] = useState([]);
 
   const handleSaveToFile = async (e) => {
     setLoading(true);
     setError(false);
     e.preventDefault();
+    const throwsApi = throws.map((throwDice) => ({
+      ...throwDice,
+      player: throwDice.player.index,
+    }));
 
     try {
       const response = await saveFile({
-        throws,
+        throws: throwsApi,
+        players: players.map(({ index }) => index),
       });
       setSuccess(response.message);
     } catch (err) {
@@ -42,25 +49,44 @@ const Dashboard = () => {
     <Alert variant="success">{success}</Alert>
   ) : null;
 
-  const queue = useMemo(() => Math.floor(throws.length / players.length) + 1, [
-    players.length,
-    throws.length,
-  ]);
+  const queueCount = useMemo(
+    () => Math.floor(throws.length / queue.length) + 1,
+    [queue.length, throws.length]
+  );
 
   const activePlayer = useMemo(() => {
-    return players.find(
-      (player) => player.index - 1 === throws.length % players.length
-    );
-  }, [players, throws.length]);
+    return queue[throws.length % queue.length];
+  }, [queue, throws.length]);
+
+  const handleStart = () => {
+    const queue = [];
+    if (isExtension) {
+      players.map((player) => {
+        queue.push(player);
+        queue.push(player);
+      });
+    } else {
+      players.map((player) => {
+        queue.push(player);
+      });
+    }
+    setQueue(queue);
+    setIsStarted(true);
+  };
 
   return (
     <Container className="p-0">
       {isStarted ? (
         <>
-          <h3>{`Kolejka ${queue}, gracz ${activePlayer.name}`}</h3>
+          <h3>{`Kolejka ${queueCount}, gracz ${activePlayer.name}`}</h3>
           <PlayersStats players={players} />
           <StatsBoard throws={throws} />
-          <Board setThrows={setThrows} activePlayer={activePlayer} />
+          <Board
+            throws={throws}
+            setThrows={setThrows}
+            activePlayer={activePlayer}
+            isExtension={isExtension}
+          />
           {message}
           <Button
             disabled={loading}
@@ -74,12 +100,15 @@ const Dashboard = () => {
         <>
           <PlayersList players={players} setPlayers={setPlayers} />
           <PlayersForm setPlayers={setPlayers} players={players} />
+          <Form.Check
+            type="switch"
+            label="Dodatek: Miasta i rycerze"
+            id="disabled-custom-switch"
+            value={isExtension}
+            onClick={() => setIsExtension((prevState) => !prevState)}
+          />
           {!!players.length && (
-            <Button
-              variant="secondary"
-              className="mt-3"
-              onClick={() => setIsStarted(true)}
-            >
+            <Button variant="secondary" className="mt-3" onClick={handleStart}>
               Zacznij gre
             </Button>
           )}
