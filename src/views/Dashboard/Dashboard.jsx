@@ -7,6 +7,7 @@ import {
   PlayersStats,
   PlayersList,
   CardForm,
+  ListOfPlayers,
 } from "components";
 import { emptyDiceStats } from "constants/diceNumbers";
 import { saveFile } from "functions";
@@ -20,7 +21,6 @@ const Dashboard = () => {
   const [success, setSuccess] = useState(false);
   const [isExtension, setIsExtension] = useState(false);
   const [queue, setQueue] = useState([]);
-  const [buildings, setBuildings] = useState([]);
 
   const handleSaveToFile = async (e) => {
     setLoading(true);
@@ -81,6 +81,7 @@ const Dashboard = () => {
 
   return (
     <Container className="p-0">
+      <ListOfPlayers players={players} />
       {isStarted ? (
         <>
           <h3>{`Kolejka ${queueCount}, gracz ${activePlayer.name} ${
