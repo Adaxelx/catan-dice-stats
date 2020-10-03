@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  ProgressBar,
-  Accordion,
-  Button,
-  Card,
-  Col,
-  Row,
-} from "react-bootstrap";
+import { Accordion, Button, Card, Col, Row } from "react-bootstrap";
 import { StyledThrow } from "./HistoryOfThrows.css";
 
 const HistoryOfThrows = ({ history, longestStreak, players }) => {

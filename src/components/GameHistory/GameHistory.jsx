@@ -1,7 +1,7 @@
 import React from "react";
 import { ProgressBar, Accordion, Button, Card, Col } from "react-bootstrap";
 import { StyledDiceStat } from "./GameHistory.css";
-import { DiceThrowsStats, HistoryOfThrows } from "../";
+import { DiceThrowsStats, HistoryOfThrows, ResourcesStats } from "../";
 
 const GameHistory = ({ game }) => {
   console.log(game);
@@ -23,6 +23,7 @@ const GameHistory = ({ game }) => {
             longestStreak={game.longestStreak}
             players={game.players}
           />
+          <ResourcesStats stats={game.resourcesStats} />
         </Card.Body>
       </Accordion.Collapse>
     </Accordion>
