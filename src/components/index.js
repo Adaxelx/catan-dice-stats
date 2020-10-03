@@ -5,3 +5,5 @@ export { default as PlayersStats } from "./PlayersStats";
 export { default as FormGroup } from "./FormGroup";
 export { default as CardForm } from "./CardForm";
 export { default as ListOfPlayers } from "./ListOfPlayers";
+export { default as GameHistory } from "./GameHistory";
+export { default as Navigation } from "./Navigation";
