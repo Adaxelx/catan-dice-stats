@@ -1,6 +1,7 @@
 import React from "react";
 import { ProgressBar, Accordion, Button, Card, Col } from "react-bootstrap";
 import { StyledDiceStat } from "./GameHistory.css";
+import { DiceThrowsStats, HistoryOfThrows } from "../";
 
 const GameHistory = ({ game }) => {
   console.log(game);
@@ -12,23 +13,16 @@ const GameHistory = ({ game }) => {
         </Accordion.Toggle>
       </Card.Header>
       <Accordion.Collapse eventKey="0">
-        <Card.Body>
-          <p>{`Statystyki rzutów (łącznie: ${game.countOfDiceRolls})`}</p>
-          {Object.keys(game.stats).map((key) => (
-            <div className="d-flex align-items-center mb-1">
-              <Col xs={2}>
-                <StyledDiceStat>{`${key} (${game.stats[key]})`}</StyledDiceStat>
-              </Col>
-              <Col xs={10}>
-                <ProgressBar
-                  striped
-                  variant="warning"
-                  className="w-100"
-                  now={(game.stats[key] / game.countOfDiceRolls) * 100}
-                />
-              </Col>
-            </div>
-          ))}
+        <Card.Body className="p-0">
+          <DiceThrowsStats
+            stats={game.stats}
+            countOfDiceRolls={game.countOfDiceRolls}
+          />
+          <HistoryOfThrows
+            history={game.history}
+            longestStreak={game.longestStreak}
+            players={game.players}
+          />
         </Card.Body>
       </Accordion.Collapse>
     </Accordion>

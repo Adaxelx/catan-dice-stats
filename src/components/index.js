@@ -7,3 +7,5 @@ export { default as CardForm } from "./CardForm";
 export { default as ListOfPlayers } from "./ListOfPlayers";
 export { default as GameHistory } from "./GameHistory";
 export { default as Navigation } from "./Navigation";
+export { default as DiceThrowsStats } from "./DiceThrowsStats";
+export { default as HistoryOfThrows } from "./HistoryOfThrows";
