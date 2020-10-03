@@ -6,7 +6,8 @@ export const StyledPlayer = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  background-color: #fdd906;
+  background-color: ${({odd})=> odd ? "#8fc693" : "#1f3057"};
+  color:${({odd})=> odd ? "black" : "#fdd906"};
 `;
 
 export const StyledPlayerInfo = styled.div`

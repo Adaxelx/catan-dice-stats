@@ -5,7 +5,6 @@ import {
   StatsBoard,
   PlayersForm,
   PlayersStats,
-  PlayersList,
   CardForm,
   ListOfPlayers,
 } from "components";
@@ -22,6 +21,8 @@ const Dashboard = () => {
   const [isExtension, setIsExtension] = useState(false);
   const [queue, setQueue] = useState([]);
 
+  console.log(players);
+
   const handleSaveToFile = async (e) => {
     setLoading(true);
     setError(false);
@@ -34,7 +35,7 @@ const Dashboard = () => {
     try {
       const response = await saveFile({
         throws: throwsApi,
-        players: players.map(({ index }) => index),
+        players: players,
         isExtension,
       });
       setSuccess(response.message);
@@ -77,19 +78,25 @@ const Dashboard = () => {
     setIsStarted(true);
   };
 
-  console.log(players);
-
   return (
     <Container className="p-0">
-      <ListOfPlayers players={players} />
+      <ListOfPlayers players={players} setPlayers={setPlayers} />
+      {!!players.length && (
+        <CardForm
+          throws={throws}
+          isExtension={isExtension}
+          players={players}
+          setPlayers={setPlayers}
+        />
+      )}
       {isStarted ? (
         <>
           <h3>{`Kolejka ${queueCount}, gracz ${activePlayer.name} ${
             isExtension
-              ? !throws.length % 2
+              ? !(throws.length % 2)
                 ? "rzut kostką z liczbami"
                 : "rzut kostką wydarzeń"
-              : null
+              : ""
           }`}</h3>
           <PlayersStats players={players} />
           <StatsBoard throws={throws} isExtension={isExtension} />
@@ -110,23 +117,15 @@ const Dashboard = () => {
         </>
       ) : (
         <>
-          <PlayersList players={players} setPlayers={setPlayers} />
           <PlayersForm setPlayers={setPlayers} players={players} />
           <Form.Check
             type="switch"
             label="Dodatek: Miasta i rycerze"
             id="disabled-custom-switch"
+            className="mt-3"
             value={isExtension}
             onClick={() => setIsExtension((prevState) => !prevState)}
           />
-          {!!players.length && (
-            <CardForm
-              throws={throws}
-              isExtension={isExtension}
-              players={players}
-              setPlayers={setPlayers}
-            />
-          )}
           {!!players.length && (
             <Button variant="secondary" className="mt-3" onClick={handleStart}>
               Zacznij gre

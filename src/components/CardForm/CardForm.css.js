@@ -5,8 +5,7 @@ export const StyledReourcesContainer = styled.div`
   display: grid;
   width: 100%;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: ${({ isExtension }) =>
-    isExtension ? "repeat(3, 1fr)" : "repeat(2,1fr)"};
+  grid-template-rows: repeat(2, 1fr);
   column-gap: 5px;
   row-gap: 5px;
   justify-items: center;

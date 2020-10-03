@@ -4,6 +4,7 @@ import diceNumbers, { citiesAndKnights } from "constants/diceNumbers";
 
 const Board = ({ setThrows, activePlayer, isExtension, throws }) => {
   const handleClick = (id) => {
+    console.log(id);
     setThrows((prevState) => [
       ...prevState,
       { value: id, player: activePlayer },

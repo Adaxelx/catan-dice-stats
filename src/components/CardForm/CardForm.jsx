@@ -20,7 +20,7 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
   const [type, setType] = useState(buildingsTypes[0]);
   const [resource, setResource] = useState(resourcesArray[0].name);
   const [value, setValue] = useState(diceNumbers[0]);
-  const [player, setPlayer] = useState(players[0]);
+  const [player, setPlayer] = useState(players[0].index);
 
   const [localResources, setLocalResources] = useState([]);
 
@@ -34,8 +34,9 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
       setPlayers((prevState) => {
         const array = [...prevState];
         const index = array.findIndex(
-          (playerArr) => player.index === playerArr.index
+          (playerArr) => parseInt(player, 10) === playerArr.index
         );
+
         array[index] = {
           ...array[index],
           buildings: [
@@ -45,6 +46,7 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
         };
         return array;
       });
+      setLocalResources([]);
     }
     setValidated(true);
   };
@@ -52,6 +54,12 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
   const handleChange = (e) => {
     const value = e.target.value;
     setType(value);
+  };
+
+  const handlePlayerChange = (e) => {
+    const value = e.target.value;
+    console.log(value);
+    setPlayer(value);
   };
 
   const handleSettlement = (resource, type) => {
@@ -125,10 +133,10 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant="link" eventKey="0">
-            Dodaj surowce
+            Dodaj budowle
           </Accordion.Toggle>
         </Card.Header>
-        <Accordion.Collapse eventKey="0">
+        <Accordion.Collapse eventKey="0" as={Card.Body}>
           <Form validated={validated} noValidate onSubmit={handleSubmit}>
             <Form.Group controlId="exampleForm.ControlSelect1">
               <Form.Label>Wybierz typ budowli</Form.Label>
@@ -145,13 +153,18 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlSelect1">
               <Form.Label>Wybierz gracza</Form.Label>
-              <Form.Control as="select" required>
+              <Form.Control
+                as="select"
+                required
+                value={player}
+                onChange={handlePlayerChange}
+              >
                 {players.map(({ name, index }) => (
                   <option value={index}>{name}</option>
                 ))}
               </Form.Control>
             </Form.Group>
-            <StyledReourcesContainer isExtension={isExtension}>
+            <StyledReourcesContainer>
               {resourcesArray.map(({ name, image }) => (
                 <StyledBox
                   isActive={resource === name}
@@ -174,13 +187,17 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
               ))}
             </StyledBoard>
             <p>Aktualnie dodane surowce:</p>
+            <div className="d-flex">
             {localResources.map(({ type, value }) => (
-              <p>
+              <p className="mr-1">
                 {type} {value}
               </p>
             ))}
+            </div>
             <Button onClick={handleLocalAdd}>Dodaj surowiec</Button>
-            <Button onClick={() => setLocalResources([])}>Resetuj</Button>
+            <Button onClick={() => setLocalResources([])} className="mx-1">
+              Resetuj
+            </Button>
             <Button type="submit">Dodaj budowle</Button>
           </Form>
         </Accordion.Collapse>
