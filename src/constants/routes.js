@@ -1,10 +1,10 @@
 const routes = [
   {
-    to: "/",
+    to: `/`,
     name: "Strona główna",
   },
   {
-    to: "/history",
+    to: `/history`,
     name: "Historia gier",
   },
 ];

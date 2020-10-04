@@ -31,7 +31,7 @@ const GameHistory = ({ game }) => {
               />
               <ResourcesStats stats={game.resourcesStats} />
               {game.players.map((player) => (
-                <PlayerStats player={player} />
+                <PlayerStats key={player._id} player={player} />
               ))}
             </>
           )}

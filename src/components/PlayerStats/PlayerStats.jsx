@@ -1,6 +1,6 @@
 import React from "react";
-import { DiceThrowsStats, ResourcesStats } from "../";
-import { Alert } from "react-bootstrap";
+import { DiceThrowsStats, ResourcesStats, PlayerBuilding } from "../";
+import { Alert, Accordion, Card, Button } from "react-bootstrap";
 
 const PlayerStats = ({ player }) => {
   console.log(player);
@@ -17,6 +17,13 @@ const PlayerStats = ({ player }) => {
           .reduce((acc, value) => acc + value, 0)}
       />
       <ResourcesStats stats={player.resourcesStats} />
+      <Alert
+        variant="dark"
+        className="mb-0"
+      >{`Budowle gracza ${player.name}`}</Alert>
+      {player.buildings.map((building) => (
+        <PlayerBuilding building={building} key={building._id} />
+      ))}
     </>
   );
 };
