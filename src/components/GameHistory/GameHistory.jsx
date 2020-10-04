@@ -9,7 +9,6 @@ import {
 } from "../";
 
 const GameHistory = ({ game }) => {
-  console.log(game);
   return (
     <Accordion>
       <Card.Header>

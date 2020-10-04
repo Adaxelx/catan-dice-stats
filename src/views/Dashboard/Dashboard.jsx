@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useContext } from "react";
 import { Container, Button, Alert, Form } from "react-bootstrap";
 import {
   Board,
@@ -10,18 +10,53 @@ import {
 } from "components";
 import { emptyDiceStats } from "constants/diceNumbers";
 import { saveFile } from "functions";
+import { GameContext } from "context";
 
 const Dashboard = () => {
   const [throws, setThrows] = useState([]);
   const [players, setPlayers] = useState([]);
+  const [queue, setQueue] = useState([]);
+
   const [isStarted, setIsStarted] = useState(false);
+  const [isExtension, setIsExtension] = useState(false);
+
+  const [gameId, setGameId] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [isExtension, setIsExtension] = useState(false);
-  const [queue, setQueue] = useState([]);
+  const [isLocallySaved, setIsLocallySaved] = useState(false);
 
-  console.log(players);
+  const gameContext = useContext(GameContext);
+
+  useEffect(() => {
+    const {
+      throws,
+      players,
+      isStarted,
+      isExtension,
+      queue,
+      gameId,
+    } = gameContext;
+    setThrows(throws);
+    setPlayers(players);
+    setIsStarted(isStarted);
+    setIsExtension(isExtension);
+    setQueue(queue);
+    setGameId(gameId);
+  }, [gameContext]);
+
+  const handleSaveData = () => {
+    gameContext.saveGameStats({
+      throws,
+      players,
+      isStarted,
+      isExtension,
+      queue,
+      gameId,
+    });
+    setIsLocallySaved(true);
+  };
 
   const handleSaveToFile = async (e) => {
     setLoading(true);
@@ -33,11 +68,15 @@ const Dashboard = () => {
     }));
 
     try {
-      const response = await saveFile({
-        throws: throwsApi,
-        players: players,
-        isExtension,
-      });
+      const response = await saveFile(
+        {
+          throws: throwsApi,
+          players: players,
+          isExtension,
+        },
+        gameId
+      );
+      setGameId(response.id);
       setSuccess(response.message);
     } catch (err) {
       setError(true);
@@ -133,6 +172,14 @@ const Dashboard = () => {
           )}
         </>
       )}
+      {isLocallySaved && (
+        <Alert variant="success" className="mt-3">
+          Poprawnie zapisano dane
+        </Alert>
+      )}
+      <Button variant="primary" className="mt-3" onClick={handleSaveData}>
+        Zapisz dane jeśli chcesz sprawdzić historię gry
+      </Button>
     </Container>
   );
 };

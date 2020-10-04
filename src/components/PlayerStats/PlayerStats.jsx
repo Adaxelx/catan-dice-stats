@@ -3,6 +3,7 @@ import { DiceThrowsStats, ResourcesStats } from "../";
 import { Alert } from "react-bootstrap";
 
 const PlayerStats = ({ player }) => {
+  console.log(player);
   return (
     <>
       <Alert

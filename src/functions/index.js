@@ -1,7 +1,7 @@
 import proxy from "config/api";
 
-export const saveFile = async (gameData) => {
-  const url = `${proxy.GAME}add`;
+export const saveFile = async (gameData, id) => {
+  const url = id ? `${proxy.GAME}edit/${id}/` : `${proxy.GAME}add/`;
 
   const headers = {
     "Content-Type": "application/json",
@@ -9,7 +9,7 @@ export const saveFile = async (gameData) => {
 
   const response = await fetch(url, {
     headers,
-    method: "POST",
+    method: id ? "PUT" : "POST",
     body: JSON.stringify({ ...gameData }),
   });
 

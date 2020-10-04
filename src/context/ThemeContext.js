@@ -10,8 +10,6 @@ const theme = {
 
 export const ThemeContext = React.createContext(theme);
 
-const ThemeContextProvider = (props) => (
+export const ThemeContextProvider = (props) => (
   <ThemeContext.Provider value={theme} {...props} />
 );
-
-export default ThemeContextProvider;

@@ -50,14 +50,14 @@ const closeContent = css`
 
 export const StyledNavContent = styled.nav`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: black;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: 0.5s;
   z-index: 99;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   transform-origin: top right;

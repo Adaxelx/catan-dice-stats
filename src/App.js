@@ -3,7 +3,7 @@ import { Dashboard, History } from "views";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Navigation } from "components";
 import styled from "styled-components";
-import ThemeContextProvider from "context/ThemeContext";
+import { ThemeContextProvider, GameContextProvider } from "context";
 
 const StyledApp = styled.div`
   min-height: 100vh;
@@ -16,17 +16,19 @@ const App = () => {
   return (
     <StyledApp>
       <ThemeContextProvider>
-        <BrowserRouter>
-          <Navigation />
-          <Switch>
-            <Route path="/" exact={true}>
-              <Dashboard />
-            </Route>
-            <Route path="/history">
-              <History />
-            </Route>
-          </Switch>
-        </BrowserRouter>
+        <GameContextProvider>
+          <BrowserRouter>
+            <Navigation />
+            <Switch>
+              <Route path="/" exact={true}>
+                <Dashboard />
+              </Route>
+              <Route path="/history">
+                <History />
+              </Route>
+            </Switch>
+          </BrowserRouter>
+        </GameContextProvider>
       </ThemeContextProvider>
     </StyledApp>
   );

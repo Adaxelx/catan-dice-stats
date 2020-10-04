@@ -24,10 +24,10 @@ const StatsBoard = ({ throws, isExtension }) => {
               {isExtension ? throws.length / 2 : throws.length}
             </p>
             <StyledDiceStats>
-              {throws.map(({ player, value }, i) => {
+              {throws.map(({ player, value, id }) => {
                 return (
-                  <StyledStatDisplay>
-                    <StyledDiceNumber>Rzut: {i + 1}</StyledDiceNumber>
+                  <StyledStatDisplay key={id}>
+                    <StyledDiceNumber>Rzut: {id + 1}</StyledDiceNumber>
                     <StyledStats>Wynik rzutu: {value}</StyledStats>
                     <StyledStats align="right">
                       Rzucił {player.name}

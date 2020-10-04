@@ -38,9 +38,9 @@ const ListOfPlayers = ({ players, setPlayers }) => {
         <Accordion.Collapse eventKey="0">
           <>
             {message ||
-              players.map(({ name, index, buildings },i) => {
+              players.map(({ name, index, buildings }, i) => {
                 return (
-                  <StyledPlayer odd={!i%2}>
+                  <StyledPlayer key={index} odd={!i % 2}>
                     <StyledPlayerInfo>
                       <h4 className="mb-0">{name}</h4>
                       <p className="ml-2 mb-0">W kolejce: {index}</p>

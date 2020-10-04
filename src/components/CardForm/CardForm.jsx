@@ -147,7 +147,9 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
                 onChange={handleChange}
               >
                 {buildingsTypes.map((typeVal) => (
-                  <option value={typeVal}>{typeVal}</option>
+                  <option value={typeVal} key={typeVal}>
+                    {typeVal}
+                  </option>
                 ))}
               </Form.Control>
             </Form.Group>
@@ -160,13 +162,16 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
                 onChange={handlePlayerChange}
               >
                 {players.map(({ name, index }) => (
-                  <option value={index}>{name}</option>
+                  <option value={index} key={index}>
+                    {name}
+                  </option>
                 ))}
               </Form.Control>
             </Form.Group>
             <StyledReourcesContainer>
               {resourcesArray.map(({ name, image }) => (
                 <StyledBox
+                  key={name}
                   isActive={resource === name}
                   onClick={() => setResource(name)}
                 >
@@ -188,11 +193,11 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
             </StyledBoard>
             <p>Aktualnie dodane surowce:</p>
             <div className="d-flex">
-            {localResources.map(({ type, value }) => (
-              <p className="mr-1">
-                {type} {value}
-              </p>
-            ))}
+              {localResources.map(({ type, value }, i) => (
+                <p className="mr-1" key={type + value + i}>
+                  {type} {value}
+                </p>
+              ))}
             </div>
             <Button onClick={handleLocalAdd}>Dodaj surowiec</Button>
             <Button onClick={() => setLocalResources([])} className="mx-1">
