@@ -12,3 +12,4 @@ export { default as HistoryOfThrows } from "./HistoryOfThrows";
 export { default as ResourcesStats } from "./ResourcesStats";
 export { default as PlayerStats } from "./PlayerStats";
 export { default as PlayerBuilding } from "./PlayerBuilding";
+export { default as Pagination } from "./Pagination";
