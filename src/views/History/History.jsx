@@ -26,7 +26,12 @@ const History = () => {
   ) : error ? (
     <Alert variant="danger">Nie udało się załadować historii</Alert>
   ) : null;
-  return <>{message || history.map((game) => <GameHistory game={game} />)}</>;
+  return (
+    <>
+      {message ||
+        history.map((game) => <GameHistory key={game._id} game={game} />)}
+    </>
+  );
 };
 
 export default History;

@@ -20,7 +20,7 @@ const ResourcesStats = ({ stats }) => {
           {Object.keys(stats).map(
             (key) =>
               key !== "total" && (
-                <div className="d-flex align-items-center mb-1">
+                <div key={key} className="d-flex align-items-center mb-1">
                   <Col xs={4}>
                     <StyledDiceStat>{`${key} (${stats[key].length})`}</StyledDiceStat>
                   </Col>

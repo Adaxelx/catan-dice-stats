@@ -20,8 +20,9 @@ const HistoryOfThrows = ({ history, longestStreak, players }) => {
               <h4 className="text-center">Gracz</h4>
             </Col>
           </Row>
-          {history.map(({ value, player }, i) => (
+          {history.map(({ value, player, _id: id }, i) => (
             <StyledThrow
+              key={id}
               isLongest={
                 i >= longestStreak.startIndex &&
                 i < longestStreak.startIndex + longestStreak.streak

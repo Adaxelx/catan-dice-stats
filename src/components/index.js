@@ -10,3 +10,4 @@ export { default as Navigation } from "./Navigation";
 export { default as DiceThrowsStats } from "./DiceThrowsStats";
 export { default as HistoryOfThrows } from "./HistoryOfThrows";
 export { default as ResourcesStats } from "./ResourcesStats";
+export { default as PlayerStats } from "./PlayerStats";

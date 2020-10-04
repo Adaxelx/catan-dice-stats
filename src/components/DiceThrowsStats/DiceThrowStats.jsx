@@ -18,7 +18,7 @@ const DiceThrowsStats = ({ stats, countOfDiceRolls }) => {
       <Accordion.Collapse eventKey="0">
         <Card.Body className="p-0">
           {Object.keys(stats).map((key) => (
-            <div className="d-flex align-items-center mb-1">
+            <div key={key} className="d-flex align-items-center mb-1">
               <Col xs={2}>
                 <StyledDiceStat>{`${key} (${stats[key]})`}</StyledDiceStat>
               </Col>
