@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useMemo, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  useContext,
+  useCallback,
+} from "react";
 import { Container, Button, Alert, Form } from "react-bootstrap";
 import {
   Board,
@@ -29,6 +35,43 @@ const Dashboard = () => {
 
   const gameContext = useContext(GameContext);
 
+  const handleSaveToFile = useCallback(async () => {
+    setLoading(true);
+    setError(false);
+    const throwsApi = throws.map((throwDice) => ({
+      ...throwDice,
+      player: throwDice.player.index,
+    }));
+
+    try {
+      const response = await saveFile(
+        {
+          throws: throwsApi,
+          players: players,
+          isExtension,
+        },
+        gameId
+      );
+      setGameId(response.id);
+      setSuccess(response.message);
+    } catch (err) {
+      setError(true);
+    }
+    setLoading(false);
+  }, [gameId, isExtension, players, throws]);
+
+  // useEffect(() => {
+  //   let interval;
+  //   if (isStarted) {
+  //     interval = setInterval(() => {
+  //       handleSaveToFile();
+  //     }, 20000);
+  //   }
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, [handleSaveToFile, isStarted]);
+
   useEffect(() => {
     const {
       throws,
@@ -58,30 +101,9 @@ const Dashboard = () => {
     setIsLocallySaved(true);
   };
 
-  const handleSaveToFile = async (e) => {
-    setLoading(true);
-    setError(false);
+  const handleSaveToFileClick = async (e) => {
     e.preventDefault();
-    const throwsApi = throws.map((throwDice) => ({
-      ...throwDice,
-      player: throwDice.player.index,
-    }));
-
-    try {
-      const response = await saveFile(
-        {
-          throws: throwsApi,
-          players: players,
-          isExtension,
-        },
-        gameId
-      );
-      setGameId(response.id);
-      setSuccess(response.message);
-    } catch (err) {
-      setError(true);
-    }
-    setLoading(false);
+    handleSaveToFile();
   };
 
   const message = loading ? (
@@ -149,7 +171,7 @@ const Dashboard = () => {
           <Button
             disabled={loading}
             variant="primary"
-            onClick={handleSaveToFile}
+            onClick={handleSaveToFileClick}
           >
             Zapisz do pliku
           </Button>
