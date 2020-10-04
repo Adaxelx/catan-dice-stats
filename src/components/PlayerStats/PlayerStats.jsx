@@ -8,7 +8,7 @@ const PlayerStats = ({ player }) => {
     <>
       <Alert
         variant="success"
-        className="mb-0"
+        className="mb-0  mt-3 py-4 h4 text-center"
       >{`Statystki gracza ${player.name}`}</Alert>
       <DiceThrowsStats
         stats={player.stats}
@@ -19,7 +19,7 @@ const PlayerStats = ({ player }) => {
       <ResourcesStats stats={player.resourcesStats} />
       <Alert
         variant="dark"
-        className="mb-0"
+        className="mb-0 py-4 h4 text-center"
       >{`Budowle gracza ${player.name}`}</Alert>
       {player.buildings.map((building) => (
         <PlayerBuilding building={building} key={building._id} />

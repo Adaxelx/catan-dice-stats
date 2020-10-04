@@ -1,6 +1,5 @@
 import React from "react";
-import { ProgressBar, Accordion, Button, Card, Col } from "react-bootstrap";
-import { StyledDiceStat } from "./GameHistory.css";
+import { Accordion, Button, Card, Alert } from "react-bootstrap";
 import {
   DiceThrowsStats,
   HistoryOfThrows,
@@ -18,6 +17,10 @@ const GameHistory = ({ game }) => {
       </Card.Header>
       <Accordion.Collapse eventKey="0">
         <Card.Body className="p-0">
+          <Alert
+            variant="success"
+            className="mb-0 py-4 h4 text-center"
+          >{`Statystki ogólne`}</Alert>
           <DiceThrowsStats
             stats={game.stats}
             countOfDiceRolls={game.countOfDiceRolls}

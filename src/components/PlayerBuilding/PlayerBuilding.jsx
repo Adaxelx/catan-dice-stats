@@ -5,7 +5,7 @@ const PlayerBuilding = ({ building }) => {
   console.log(building);
   return (
     <>
-      <h4 className="text-primary text-center">{`${building.type} zbudowana w turze: ${building.buildedInThrow}`}</h4>
+      <h4 className="text-warning text-center bg-primary mb-0 py-3">{`${building.type} zbudowana w turze: ${building.buildedInThrow}`}</h4>
       <ResourcesStats stats={building.resourcesStats} />
     </>
   );
