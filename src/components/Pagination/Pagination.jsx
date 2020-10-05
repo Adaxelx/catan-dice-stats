@@ -34,8 +34,6 @@ const Pagination = ({ current, max }) => {
       });
   }, [arrayOfPages, current]);
 
-  console.log(current, max);
-
   return (
     <PaginationBootstrap className="d-flex align-items-center justify-content-center">
       <Link to={current !== 1 ? `?page=1` : null}>

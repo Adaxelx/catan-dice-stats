@@ -1,5 +1,5 @@
 import React from "react";
-import { DiceThrowsStats, ResourcesStats } from "../";
+import { ResourcesStats } from "../";
 import { Alert } from "react-bootstrap";
 import { buildingsTypes } from "constants/diceNumbers";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { DiceThrowsStats, ResourcesStats, PlayerBuilding } from "../";
-import { Alert, Accordion, Card, Button } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 
 const PlayerStats = ({ player }) => {
   return (

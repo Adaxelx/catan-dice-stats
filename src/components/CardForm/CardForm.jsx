@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Accordion, Card, Button, Form } from "react-bootstrap";
 import diceNumbers, {
   resourcesArray,
-  resourcesExtension,
   buildingsTypes,
   resources,
 } from "constants/diceNumbers";
@@ -12,7 +11,6 @@ import {
   StyledReourcesContainer,
   StyledBox,
 } from "./CardForm.css";
-import { FormGroup } from "../";
 
 const CardForm = ({ isExtension, players, setPlayers, throws }) => {
   const [validated, setValidated] = useState(false);

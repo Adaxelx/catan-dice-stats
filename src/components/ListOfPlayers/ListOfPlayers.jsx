@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { Accordion, Card, Button, Alert } from "react-bootstrap";
 import {
   StyledPlayer,
@@ -15,7 +15,6 @@ import {
   resourcesArray,
   buildingsTypes,
 } from "constants/diceNumbers";
-import { slateblue } from "color-name";
 
 const ListOfPlayers = ({ players, setPlayers, isExtension }) => {
   const handleDelete = (index) => {

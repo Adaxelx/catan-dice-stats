@@ -1,6 +1,6 @@
 import React from "react";
 import { Dashboard, History } from "views";
-import { BrowserRouter, Switch, Route, HashRouter } from "react-router-dom";
+import { Switch, Route, HashRouter } from "react-router-dom";
 import { Navigation } from "components";
 import styled from "styled-components";
 import { ThemeContextProvider, GameContextProvider } from "context";
@@ -13,7 +13,6 @@ const StyledApp = styled.div`
 `;
 
 const App = () => {
-  console.log(`${process.env.PUBLIC_URL}/`);
   return (
     <StyledApp>
       <ThemeContextProvider>

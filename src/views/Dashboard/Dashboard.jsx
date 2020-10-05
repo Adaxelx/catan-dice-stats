@@ -13,7 +13,7 @@ import {
   CardForm,
   ListOfPlayers,
 } from "components";
-import { emptyDiceStats } from "constants/diceNumbers";
+
 import { saveFile } from "functions";
 import { GameContext } from "context";
 
@@ -125,12 +125,12 @@ const Dashboard = () => {
   const handleStart = () => {
     const queue = [];
     if (isExtension) {
-      players.map((player) => {
+      players.forEach((player) => {
         queue.push(player);
         queue.push(player);
       });
     } else {
-      players.map((player) => {
+      players.forEach((player) => {
         queue.push(player);
       });
     }
