@@ -34,7 +34,7 @@ const Pagination = ({ current, max }) => {
       });
   }, [arrayOfPages, current]);
 
-  console.log(mappedPages);
+  console.log(current, max);
 
   return (
     <PaginationBootstrap className="d-flex align-items-center justify-content-center">

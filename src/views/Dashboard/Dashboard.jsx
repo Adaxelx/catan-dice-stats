@@ -141,7 +141,11 @@ const Dashboard = () => {
 
   return (
     <Container className="p-0">
-      <ListOfPlayers players={players} setPlayers={setPlayers} />
+      <ListOfPlayers
+        players={players}
+        setPlayers={setPlayers}
+        isExtension={isExtension}
+      />
       {!!players.length && (
         <CardForm
           throws={throws}

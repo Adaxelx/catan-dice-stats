@@ -30,8 +30,8 @@ const History = () => {
   }, [page]);
 
   const queryParams = qs.parse(location.search, { parseNumbers: true });
-  console.log(typeof queryParams.page);
   if (
+    queryParams.page &&
     typeof parseInt(queryParams.page, 10) === "number" &&
     queryParams.page !== page
   ) {
@@ -45,6 +45,8 @@ const History = () => {
   ) : count === 0 ? (
     <Alert variant="info">Brak gier</Alert>
   ) : null;
+
+  console.log(new Date());
 
   return (
     <>

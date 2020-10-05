@@ -37,11 +37,18 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
           (playerArr) => parseInt(player, 10) === playerArr.index
         );
 
+        console.log(array[index].buildings.length);
+
         array[index] = {
           ...array[index],
           buildings: [
             ...array[index].buildings,
-            { resources: localResources, type, buildedInThrow: throws.length },
+            {
+              resources: localResources,
+              type,
+              buildedInThrow: throws.length,
+              id: array[index].buildings.length,
+            },
           ],
         };
         return array;
