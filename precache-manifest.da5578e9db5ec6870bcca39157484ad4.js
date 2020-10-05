@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1b8df36be8ad23a2aef654864e079d37",
+    "revision": "d033e83831f746065ad5f2bed2f18ad5",
     "url": "/dice-stats/index.html"
   },
   {
-    "revision": "558b15808564e8fa2ab1",
+    "revision": "d53ea53a676f00971220",
     "url": "/dice-stats/static/css/2.8aa5a7f8.chunk.css"
   },
   {
-    "revision": "c3766db36c3159f50271",
+    "revision": "a0b466be72e2c947ab6b",
     "url": "/dice-stats/static/css/main.5ecd60fb.chunk.css"
   },
   {
-    "revision": "558b15808564e8fa2ab1",
-    "url": "/dice-stats/static/js/2.bc23cacc.chunk.js"
+    "revision": "d53ea53a676f00971220",
+    "url": "/dice-stats/static/js/2.508cf90a.chunk.js"
   },
   {
     "revision": "6f9c91f92830cd94e0e9d23e81437a49",
-    "url": "/dice-stats/static/js/2.bc23cacc.chunk.js.LICENSE.txt"
+    "url": "/dice-stats/static/js/2.508cf90a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c3766db36c3159f50271",
-    "url": "/dice-stats/static/js/main.a75576d8.chunk.js"
+    "revision": "a0b466be72e2c947ab6b",
+    "url": "/dice-stats/static/js/main.8d0c71fb.chunk.js"
   },
   {
     "revision": "fdcf14c9b3b9bdd5cc12",
