@@ -10,7 +10,6 @@ import {
   Board,
   StatsBoard,
   PlayersForm,
-  PlayersStats,
   CardForm,
   ListOfPlayers,
 } from "components";
@@ -163,7 +162,6 @@ const Dashboard = () => {
                 : "rzut kostką wydarzeń"
               : ""
           }`}</h3>
-          <PlayersStats players={players} />
           <StatsBoard throws={throws} isExtension={isExtension} />
           <Board
             throws={throws}

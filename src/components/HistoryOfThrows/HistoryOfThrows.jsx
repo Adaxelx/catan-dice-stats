@@ -5,9 +5,9 @@ import { StyledThrow } from "./HistoryOfThrows.css";
 const HistoryOfThrows = ({ history, longestStreak, players }) => {
   return (
     <Accordion>
-      <Card.Header className="bg-warning">
+      <Card.Header>
         <Accordion.Toggle as={Button} variant="link" eventKey="0">
-          <h5>Historia rzutów</h5>
+          <h5 className="text-dark">Historia rzutów</h5>
         </Accordion.Toggle>
       </Card.Header>
       <Accordion.Collapse eventKey="0">

@@ -17,10 +17,7 @@ const GameHistory = ({ game }) => {
       </Card.Header>
       <Accordion.Collapse eventKey="0">
         <Card.Body className="p-0">
-          <Alert
-            variant="success"
-            className="mb-0 py-4 h4 text-center"
-          >{`Statystki ogólne`}</Alert>
+          <Alert className="mb-0 py-4 h4 text-warning bg-primary text-center">{`Statystki ogólne`}</Alert>
           <DiceThrowsStats
             stats={game.stats}
             countOfDiceRolls={game.countOfDiceRolls}

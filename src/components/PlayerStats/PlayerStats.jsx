@@ -5,10 +5,7 @@ import { Alert, Accordion, Card, Button } from "react-bootstrap";
 const PlayerStats = ({ player }) => {
   return (
     <>
-      <Alert
-        variant="success"
-        className="mb-0  mt-3 py-4 h4 text-center"
-      >{`Statystki gracza ${player.name}`}</Alert>
+      <Alert className="mb-0  mt-3 py-4 h4 text-warning bg-primary  text-center">{`Statystki gracza ${player.name}`}</Alert>
       <DiceThrowsStats
         stats={player.stats}
         countOfDiceRolls={Object.keys(player.stats)
@@ -18,7 +15,7 @@ const PlayerStats = ({ player }) => {
       <ResourcesStats stats={player.resourcesStats} />
       <Alert
         variant="dark"
-        className="mb-0 py-4 h4 text-center"
+        className="text-primary bg-warning mb-0 py-4 h4 text-center"
       >{`Budowle gracza ${player.name}`}</Alert>
       {player.buildings.map((building) => (
         <PlayerBuilding building={building} key={building._id} />

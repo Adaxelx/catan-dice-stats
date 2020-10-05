@@ -10,9 +10,9 @@ const StyledDiceStat = styled.span`
 const DiceThrowsStats = ({ stats, countOfDiceRolls }) => {
   return (
     <Accordion>
-      <Card.Header className="bg-warning">
+      <Card.Header>
         <Accordion.Toggle as={Button} variant="link" eventKey="0">
-          <h5>{`Statystyki rzutów (łącznie: ${countOfDiceRolls})`}</h5>
+          <h5 className="text-dark">{`Statystyki rzutów (łącznie: ${countOfDiceRolls})`}</h5>
         </Accordion.Toggle>
       </Card.Header>
       <Accordion.Collapse eventKey="0">

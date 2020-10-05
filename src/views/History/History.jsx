@@ -46,8 +46,6 @@ const History = () => {
     <Alert variant="info">Brak gier</Alert>
   ) : null;
 
-  console.log(new Date());
-
   return (
     <>
       {message ||
