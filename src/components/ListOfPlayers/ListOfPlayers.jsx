@@ -98,8 +98,22 @@ const ListOfPlayers = ({ players, setPlayers, isExtension }) => {
     return newBuilding;
   };
 
+  const handleDeleteBuiding = (player, building) => {
+    const playersLocal = [...players];
+    const playerIndex = playersLocal.findIndex(
+      (playerLoc) => playerLoc.index === player
+    );
+
+    const buildingIndex = playersLocal[playerIndex].buildings.findIndex(
+      (buildingLoc) => buildingLoc.id === building
+    );
+
+    playersLocal[playerIndex].buildings.splice(buildingIndex, 1);
+
+    setPlayers(playersLocal);
+  };
+
   const handleChange = (player, building, type) => {
-    console.log(player, building);
     const playersLocal = [...players];
     const playerIndex = playersLocal.findIndex(
       (playerLoc) => playerLoc.index === player
@@ -110,7 +124,6 @@ const ListOfPlayers = ({ players, setPlayers, isExtension }) => {
     );
     const buildingLocal = playersLocal[playerIndex].buildings[buildingIndex];
 
-    console.log(buildingLocal, type);
     let newBuilding;
     if (type === "upgrade") {
       newBuilding = handleUpgradeBuilding(buildingLocal);
@@ -118,7 +131,7 @@ const ListOfPlayers = ({ players, setPlayers, isExtension }) => {
       newBuilding = handleDownGrade(buildingLocal);
     }
     playersLocal[playerIndex].buildings.splice(buildingIndex, 1, newBuilding);
-    console.log(playersLocal);
+
     setPlayers(playersLocal);
   };
 
@@ -190,6 +203,13 @@ const ListOfPlayers = ({ players, setPlayers, isExtension }) => {
                                 Degraduj
                               </Button>
                             )}
+                            <Button
+                              variant="danger"
+                              className="ml-4"
+                              onClick={() => handleDeleteBuiding(index, id)}
+                            >
+                              X
+                            </Button>
                           </StyledBuilding>
                         )
                       )}
