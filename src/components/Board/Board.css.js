@@ -21,7 +21,6 @@ export const StyledTile = styled.div`
   align-items: center;
   justify-content: center;
   color: #8fc693;
-  ${({ disabled }) => disabled && "pointer-events: none;"}
   position: relative;
 
   &::before {

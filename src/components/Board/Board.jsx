@@ -4,6 +4,7 @@ import diceNumbers, { citiesAndKnights } from "constants/diceNumbers";
 
 const Board = ({ setThrows, activePlayer, isExtension, throws }) => {
   const handleClick = (id) => {
+    console.log(id);
     setThrows((prevState) => [
       ...prevState,
       { value: id, player: activePlayer, id: prevState.length },
@@ -15,16 +16,22 @@ const Board = ({ setThrows, activePlayer, isExtension, throws }) => {
       {diceNumbers.map((number) => (
         <StyledTile
           disabled={isExtension && throws.length % 2}
-          onClick={() => handleClick(number)}
+          onClick={
+            isExtension && throws.length % 2
+              ? () => {}
+              : () => handleClick(number)
+          }
           key={number}
         >
           {number}
         </StyledTile>
-      ))}
+      ))}{" "}
       {isExtension &&
         citiesAndKnights.map((diceRoll) => (
           <StyledTile
-            onClick={() => handleClick(diceRoll.name)}
+            onClick={
+              !(throws.length % 2) ? () => {} : () => handleClick(diceRoll.name)
+            }
             key={diceRoll.name}
             disabled={isExtension && !(throws.length % 2)}
           >
