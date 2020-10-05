@@ -136,7 +136,7 @@ const ListOfPlayers = ({ players, setPlayers, isExtension }) => {
   };
 
   return (
-    <Accordion>
+    <Accordion className="mb-5">
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant="link" eventKey="0">
@@ -149,12 +149,16 @@ const ListOfPlayers = ({ players, setPlayers, isExtension }) => {
             {message ||
               players.map(({ name, index, buildings }, i) => {
                 return (
-                  <StyledPlayer key={index} odd={!(i % 2)}>
+                  <StyledPlayer
+                    className="px-1 pt-3"
+                    key={index}
+                    odd={!(i % 2)}
+                  >
                     <StyledPlayerInfo>
                       <h4 className="mb-0">{name}</h4>
                       <p className="ml-2 mb-0">W kolejce: {index}</p>
                       <Button
-                        className="ml-1"
+                        className="ml-3"
                         onClick={() => handleDelete(index)}
                         variant="danger"
                       >
