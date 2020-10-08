@@ -20,7 +20,7 @@ const PlayerBuilding = ({ building }) => {
         <h4 className="text-center">Surowce przy budynku: </h4>
         <div className="px-3">
           {building.resources.map((resource) => (
-            <span className="mr-1">{`${t(resource.type)} ${
+            <span key={resource._id} className="mr-1">{`${t(resource.type)} ${
               resource.value
             }`}</span>
           ))}

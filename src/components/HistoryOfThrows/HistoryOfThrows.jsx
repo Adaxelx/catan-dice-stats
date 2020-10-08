@@ -49,7 +49,7 @@ const HistoryOfThrows = ({ history, longestStreak, players, isExtension }) => {
                   </Col>
                 </StyledThrow>
               );
-            }
+            } else return null;
           })}
         </Card.Body>
       </Accordion.Collapse>
