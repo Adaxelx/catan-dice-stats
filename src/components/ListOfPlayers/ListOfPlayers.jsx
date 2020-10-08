@@ -15,8 +15,11 @@ import {
   resourcesArray,
   buildingsTypes,
 } from "constants/diceNumbers";
+import { useTranslation } from "hooks";
 
 const ListOfPlayers = ({ players, setPlayers, isExtension }) => {
+  const t = useTranslation();
+
   const handleDelete = (index) => {
     setPlayers((prevState) => {
       const tmp = [...prevState];
@@ -183,7 +186,7 @@ const ListOfPlayers = ({ players, setPlayers, isExtension }) => {
                               <StyledResourcesContainer>
                                 {resources.map(({ type, value }) => (
                                   <StyledResource>
-                                    <p>{type}</p>
+                                    <p>{t(type)}</p>
                                     <p className="ml-1">przy: {value}</p>
                                   </StyledResource>
                                 ))}

@@ -21,7 +21,7 @@ const Pagination = ({ current, max }) => {
       })
       .map((page) => {
         return (
-          <Link to={page !== current ? `?page=${page}` : null}>
+          <Link key={page} to={page !== current ? `?page=${page}` : null}>
             <li
               className={`page-link  ${
                 page === parseInt(current, 10) ? "bg-primary text-light" : ""

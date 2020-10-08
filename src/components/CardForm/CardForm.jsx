@@ -11,8 +11,11 @@ import {
   StyledReourcesContainer,
   StyledBox,
 } from "./CardForm.css";
+import { useTranslation } from "hooks";
 
 const CardForm = ({ isExtension, players, setPlayers, throws }) => {
+  const t = useTranslation();
+
   const [validated, setValidated] = useState(false);
 
   const [type, setType] = useState(buildingsTypes[0]);
@@ -200,7 +203,7 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
             <div className="d-flex">
               {localResources.map(({ type, value }, i) => (
                 <p className="mr-1" key={type + value + i}>
-                  {type} {value}
+                  {t(type)} {value}
                 </p>
               ))}
             </div>

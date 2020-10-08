@@ -1,6 +1,7 @@
 import React from "react";
 import { ProgressBar, Accordion, Button, Card, Col } from "react-bootstrap";
 import styled from "styled-components";
+import { useTranslation } from "hooks";
 
 const StyledDiceStat = styled.span`
   white-space: nowrap;
@@ -8,6 +9,8 @@ const StyledDiceStat = styled.span`
 `;
 
 const ResourcesStats = ({ stats }) => {
+  const t = useTranslation();
+
   return (
     <Accordion>
       <Card.Header>
@@ -22,7 +25,9 @@ const ResourcesStats = ({ stats }) => {
               key !== "total" && (
                 <div key={key} className="d-flex align-items-center mb-1">
                   <Col xs={4}>
-                    <StyledDiceStat>{`${key} (${stats[key].length})`}</StyledDiceStat>
+                    <StyledDiceStat>{`${t(key)} (${
+                      stats[key].length
+                    })`}</StyledDiceStat>
                   </Col>
                   <Col xs={8}>
                     <ProgressBar

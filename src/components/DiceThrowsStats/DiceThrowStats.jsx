@@ -1,6 +1,7 @@
 import React from "react";
 import { ProgressBar, Accordion, Button, Card, Col } from "react-bootstrap";
 import styled from "styled-components";
+import { useTranslation } from "hooks";
 
 const StyledDiceStat = styled.span`
   white-space: nowrap;
@@ -8,6 +9,8 @@ const StyledDiceStat = styled.span`
 `;
 
 const DiceThrowsStats = ({ stats, countOfDiceRolls }) => {
+  const t = useTranslation();
+
   return (
     <Accordion>
       <Card.Header>
@@ -19,10 +22,12 @@ const DiceThrowsStats = ({ stats, countOfDiceRolls }) => {
         <Card.Body className="p-0">
           {Object.keys(stats).map((key) => (
             <div key={key} className="d-flex align-items-center mb-1">
-              <Col xs={2}>
-                <StyledDiceStat>{`${key} (${stats[key]})`}</StyledDiceStat>
+              <Col xs={6}>
+                <StyledDiceStat>{`${t(key)} (${stats[key]}) ${Math.round(
+                  (stats[key] / countOfDiceRolls) * 100
+                )}%`}</StyledDiceStat>
               </Col>
-              <Col xs={10}>
+              <Col xs={6}>
                 <ProgressBar
                   striped
                   variant="warning"

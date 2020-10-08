@@ -7,8 +7,10 @@ import {
   StyledBody,
   StyledStats,
 } from "./StatsBoard.css";
+import { useTranslation } from "hooks";
 
 const StatsBoard = ({ throws, isExtension }) => {
+  const t = useTranslation();
   return (
     <Accordion>
       <Card>
@@ -21,19 +23,32 @@ const StatsBoard = ({ throws, isExtension }) => {
           <StyledBody className="p-0 py-3">
             <p className="text-center">
               Liczba rzutów łącznie:{" "}
-              {isExtension ? throws.length / 2 : throws.length}
+              {isExtension ? Math.floor(throws.length / 2) : throws.length}
             </p>
             <StyledDiceStats>
-              {throws.map(({ player, value, id }) => {
-                return (
-                  <StyledStatDisplay key={id}>
-                    <StyledDiceNumber>Rzut: {id + 1}</StyledDiceNumber>
-                    <StyledStats>Wynik rzutu: {value}</StyledStats>
-                    <StyledStats align="right">
-                      Rzucił {player.name}
-                    </StyledStats>
-                  </StyledStatDisplay>
-                );
+              {throws.map(({ player, value, id }, i) => {
+                if ((isExtension && !(i % 2)) || !isExtension)
+                  return (
+                    <StyledStatDisplay key={id}>
+                      <StyledDiceNumber>
+                        {isExtension
+                          ? `Rzut: ${Math.floor((id + 1) / 2) + 1}`
+                          : `Rzut: ${id + 1}`}
+                      </StyledDiceNumber>
+                      <StyledStats>
+                        {isExtension
+                          ? `Wynik rzutu: ${value} & ${
+                              throws[i + 1]
+                                ? t(throws[i + 1]?.value)
+                                : "*oczekuje na rzut*"
+                            }`
+                          : `Wynik rzutu: ${value}`}
+                      </StyledStats>
+                      <StyledStats align="right">
+                        Rzucił {player.name}
+                      </StyledStats>
+                    </StyledStatDisplay>
+                  );
               })}
             </StyledDiceStats>
           </StyledBody>

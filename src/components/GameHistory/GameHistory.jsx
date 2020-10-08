@@ -19,12 +19,14 @@ const GameHistory = ({ game }) => {
         <Card.Body className="p-0">
           <Alert className="mb-0 py-4 h4 text-warning bg-primary text-center">{`Statystki ogólne`}</Alert>
           <DiceThrowsStats
+            game={game}
             stats={game.stats}
             countOfDiceRolls={game.countOfDiceRolls}
           />
           {!game.old && (
             <>
               <HistoryOfThrows
+                isExtension={game.isExtension}
                 history={game.history}
                 longestStreak={game.longestStreak}
                 players={game.players}
