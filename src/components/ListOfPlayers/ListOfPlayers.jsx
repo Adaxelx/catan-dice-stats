@@ -69,33 +69,52 @@ const ListOfPlayers = ({ players, setPlayers, isExtension }) => {
     } else {
       newBuilding.resources = [...building.resources, ...building.resources];
     }
+
+    return newBuilding;
+  };
+
+  const handleDownGradeDelete = (building) => {
+    const newBuilding = { ...building };
+
+    newBuilding.resources.sort((a, b) => a.index - b.index);
+
+    let prevIndex = newBuilding.resources[0].index;
+
+    const deleteIndexes = [];
+    for (let i = 1; i < newBuilding.resources.length; i++) {
+      if (prevIndex === newBuilding.resources[i].index) {
+        deleteIndexes.push(newBuilding.resources[i].index);
+      }
+      prevIndex = newBuilding.resources[i].index;
+    }
+
+    deleteIndexes.map((index) =>
+      newBuilding.resources.splice(
+        newBuilding.resources.findIndex((resource) => resource.index === index),
+        1
+      )
+    );
+
     return newBuilding;
   };
 
   const handleDownGrade = (building) => {
-    const newBuilding = {
+    let newBuilding = {
       ...building,
       type: buildingsTypes[0],
       resources: [...building.resources],
     };
 
-    console.log(newBuilding);
-
     if (isExtension) {
-      newBuilding.resources = building.resources
-        .filter(
-          (val) =>
-            resourcesExtension.findIndex(
-              (resource) => resource.name === val.type
-            ) === -1
-        )
-        .filter((elem, index, self) => {
-          return index === self.indexOf(elem);
-        });
+      newBuilding.resources = building.resources.filter(
+        (val) =>
+          resourcesExtension.findIndex(
+            (resource) => resource.name === val.type
+          ) === -1
+      );
+      newBuilding = handleDownGradeDelete(newBuilding);
     } else {
-      newBuilding.resources = building.resources.filter((elem, index, self) => {
-        return index === self.indexOf(elem);
-      });
+      newBuilding = handleDownGradeDelete(newBuilding);
     }
 
     return newBuilding;

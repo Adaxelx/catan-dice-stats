@@ -38,8 +38,6 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
           (playerArr) => parseInt(player, 10) === playerArr.index
         );
 
-        console.log(array[index].buildings.length);
-
         array[index] = {
           ...array[index],
           buildings: [
@@ -66,7 +64,7 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
 
   const handlePlayerChange = (e) => {
     const value = e.target.value;
-    console.log(value);
+
     setPlayer(value);
   };
 
@@ -74,20 +72,20 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
     if (type === buildingsTypes[0]) {
       setLocalResources((prevState) => [
         ...prevState,
-        { type: resource, value },
+        { type: resource, value, index: prevState.length },
       ]);
     } else if (type === buildingsTypes[1] && !isExtension) {
       setLocalResources((prevState) => [
         ...prevState,
-        { type: resource, value },
-        { type: resource, value },
+        { type: resource, value, index: prevState.length },
+        { type: resource, value, index: prevState.length },
       ]);
     } else {
       if (resource === resources.BRICK || resource === resources.GRAIN) {
         setLocalResources((prevState) => [
           ...prevState,
-          { type: resource, value },
-          { type: resource, value },
+          { type: resource, value, index: prevState.length },
+          { type: resource, value, index: prevState.length },
         ]);
       }
     }
@@ -98,22 +96,22 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
       case resources.LUMBER:
         setLocalResources((prevState) => [
           ...prevState,
-          { type: resource, value },
-          { type: resources.PAPER, value },
+          { type: resource, value, index: prevState.length },
+          { type: resources.PAPER, value, index: prevState.length },
         ]);
         break;
       case resources.SHEEP:
         setLocalResources((prevState) => [
           ...prevState,
-          { type: resource, value },
-          { type: resources.CLOTH, value },
+          { type: resource, value, index: prevState.length },
+          { type: resources.CLOTH, value, index: prevState.length },
         ]);
         break;
       case resources.ORE:
         setLocalResources((prevState) => [
           ...prevState,
-          { type: resource, value },
-          { type: resources.COIN, value },
+          { type: resource, value, index: prevState.length },
+          { type: resources.COIN, value, index: prevState.length },
         ]);
         break;
       default:
@@ -191,7 +189,7 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
               {diceNumbers.map((number) => (
                 <StyledTile
                   isActive={value === number}
-                  onClick={() => setValue(number)}
+                  onClick={number === 7 ? () => {} : () => setValue(number)}
                   key={number}
                   disabled={number === 7}
                 >
