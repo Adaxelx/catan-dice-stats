@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Accordion, Button, Card, Alert } from "react-bootstrap";
 import {
   DiceThrowsStats,
@@ -6,14 +6,36 @@ import {
   ResourcesStats,
   PlayerStats,
 } from "../";
+import { GameContext } from "context";
+import { useHistory } from "react-router-dom";
 
 const GameHistory = ({ game }) => {
+  const gameContext = useContext(GameContext);
+  const history = useHistory();
+
+  const handleLoadGame = () => {
+    gameContext.saveGameStats({
+      throws: game.history,
+      players: game.players,
+      isStarted: true,
+      isExtension: game.isExtension,
+      queue: game.players,
+      isChanged: false,
+      gameId: "",
+    });
+
+    history.push("/");
+  };
+
   return (
     <Accordion>
-      <Card.Header>
+      <Card.Header className="d-flex flex-wrap align-items-center justify-content-center">
         <Accordion.Toggle as={Button} variant="link" eventKey="0">
           <h2>{game.name}</h2>
         </Accordion.Toggle>
+        <Button className="d-inline-block ml-3" onClick={handleLoadGame}>
+          Wczytaj gre
+        </Button>
       </Card.Header>
       <Accordion.Collapse eventKey="0">
         <Card.Body className="p-0">

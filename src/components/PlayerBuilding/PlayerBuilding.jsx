@@ -9,8 +9,6 @@ const PlayerBuilding = ({ building }) => {
 
   const headerText =
     building.type === buildingsTypes[0] ? "zbudowana" : "zbudowane";
-
-  console.log(building);
   return (
     <>
       <Alert variant="dark" className="text-dark mb-0 py-3">

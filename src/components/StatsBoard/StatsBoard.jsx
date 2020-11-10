@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { Accordion, Card, Button } from "react-bootstrap";
 import {
   StyledDiceStats,
@@ -9,7 +9,7 @@ import {
 } from "./StatsBoard.css";
 import { useTranslation } from "hooks";
 
-const StatsBoard = ({ throws, isExtension }) => {
+const StatsBoard = ({ throws, isExtension, players }) => {
   const t = useTranslation();
   return (
     <Accordion>
@@ -32,8 +32,8 @@ const StatsBoard = ({ throws, isExtension }) => {
                     <StyledStatDisplay key={id}>
                       <StyledDiceNumber>
                         {isExtension
-                          ? `Rzut: ${Math.floor((id + 1) / 2) + 1}`
-                          : `Rzut: ${id + 1}`}
+                          ? `Rzut: ${Math.floor((i + 1) / 2) + 1}`
+                          : `Rzut: ${i + 1}`}
                       </StyledDiceNumber>
                       <StyledStats>
                         {isExtension
@@ -45,7 +45,10 @@ const StatsBoard = ({ throws, isExtension }) => {
                           : `Wynik rzutu: ${value}`}
                       </StyledStats>
                       <StyledStats align="right">
-                        Rzucił {player.name}
+                        Rzucił{" "}
+                        {player?.name
+                          ? player.name
+                          : players.find(({ index }) => index === player).name}
                       </StyledStats>
                     </StyledStatDisplay>
                   );

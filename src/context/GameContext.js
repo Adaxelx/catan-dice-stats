@@ -25,15 +25,21 @@ export const GameContextProvider = (props) => {
       isStarted,
       isExtension,
       queue,
-      isChanged,
       gameId,
     }) => {
+      console.log({
+        throws,
+        players,
+        isStarted,
+        isExtension,
+        queue,
+        gameId,
+      });
       setThrows(throws);
       setPlayers(players);
       setIsExtension(isExtension);
       setIsStarted(isStarted);
       setQueue(queue);
-      setIsChanged(isChanged);
       setGameId(gameId);
     },
     setChanged: (value) => setIsChanged(value),

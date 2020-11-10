@@ -39,7 +39,10 @@ const Dashboard = () => {
     setError(false);
     const throwsApi = throws.map((throwDice) => ({
       ...throwDice,
-      player: throwDice.player.index,
+      player:
+        typeof throwDice.player === "number"
+          ? throwDice.player
+          : throwDice.player.index,
     }));
 
     try {
@@ -58,18 +61,6 @@ const Dashboard = () => {
     }
     setLoading(false);
   }, [gameId, isExtension, players, throws]);
-
-  // useEffect(() => {
-  //   let interval;
-  //   if (isStarted) {
-  //     interval = setInterval(() => {
-  //       handleSaveToFile();
-  //     }, 20000);
-  //   }
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, [handleSaveToFile, isStarted]);
 
   useEffect(() => {
     const {
@@ -162,12 +153,17 @@ const Dashboard = () => {
                 : "rzut kostką wydarzeń"
               : ""
           }`}</h3>
-          <StatsBoard throws={throws} isExtension={isExtension} />
+          <StatsBoard
+            throws={throws}
+            isExtension={isExtension}
+            players={players}
+          />
           <Board
             throws={throws}
             setThrows={setThrows}
             activePlayer={activePlayer}
             isExtension={isExtension}
+            handleSaveToFile={handleSaveToFile}
           />
           {message}
           <Button

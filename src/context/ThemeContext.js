@@ -8,7 +8,7 @@ const theme = {
   },
 };
 
-export const ThemeContext = React.createContext(theme);
+export const ThemeContext = createContext(theme);
 
 export const ThemeContextProvider = (props) => (
   <ThemeContext.Provider value={theme} {...props} />
