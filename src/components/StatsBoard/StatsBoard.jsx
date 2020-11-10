@@ -16,13 +16,13 @@ const StatsBoard = ({ throws, isExtension, players }) => {
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant="link" eventKey="0">
-            Statystyki gry
+            {t("Game statistics")}
           </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey="0">
           <StyledBody className="p-0 py-3">
             <p className="text-center">
-              Liczba rzutów łącznie:{" "}
+              {t("Total count of throws")}:{" "}
               {isExtension ? Math.floor(throws.length / 2) : throws.length}
             </p>
             <StyledDiceStats>
@@ -32,20 +32,20 @@ const StatsBoard = ({ throws, isExtension, players }) => {
                     <StyledStatDisplay key={id}>
                       <StyledDiceNumber>
                         {isExtension
-                          ? `Rzut: ${Math.floor((i + 1) / 2) + 1}`
-                          : `Rzut: ${i + 1}`}
+                          ? `${t("Throw")}: ${Math.floor((i + 1) / 2) + 1}`
+                          : `${t("Throw")}: ${i + 1}`}
                       </StyledDiceNumber>
                       <StyledStats>
                         {isExtension
-                          ? `Wynik rzutu: ${value} & ${
+                          ? `${t("Count of pips")}: ${value} & ${
                               throws[i + 1]
                                 ? t(throws[i + 1]?.value)
-                                : "*oczekuje na rzut*"
+                                : `*${t("waiting for throw")}*`
                             }`
-                          : `Wynik rzutu: ${value}`}
+                          : `${t("Count of pips")}: ${value}`}
                       </StyledStats>
                       <StyledStats align="right">
-                        Rzucił{" "}
+                        {t("threw")}{" "}
                         {player?.name
                           ? player.name
                           : players.find(({ index }) => index === player).name}

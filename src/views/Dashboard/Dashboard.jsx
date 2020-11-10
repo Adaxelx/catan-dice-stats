@@ -17,8 +17,11 @@ import {
 
 import { saveFile, generateStats } from "functions";
 import { GameContext } from "context";
+import { useTranslation } from "hooks";
 
 const Dashboard = () => {
+  const t = useTranslation();
+
   const [throws, setThrows] = useState([]);
   const [players, setPlayers] = useState([]);
   const [queue, setQueue] = useState([]);
@@ -103,11 +106,11 @@ const Dashboard = () => {
   };
 
   const message = loading ? (
-    <Alert variant="info">Trwa przesyłanie...</Alert>
+    <Alert variant="info">{t("Sending...")}</Alert>
   ) : error ? (
-    <Alert variant="danger">{error}</Alert>
+    <Alert variant="danger">{t(error)}</Alert>
   ) : success ? (
-    <Alert variant="success">{success}</Alert>
+    <Alert variant="success">{t(success)}</Alert>
   ) : null;
 
   const queueCount = useMemo(
@@ -174,11 +177,13 @@ const Dashboard = () => {
       )}
       {isStarted ? (
         <>
-          <h3>{`Kolejka ${queueCount}, gracz ${activePlayer.name} ${
+          <h3>{`${t("Queue")} ${queueCount}, ${t("player")} ${
+            activePlayer.name
+          } ${
             isExtension
               ? !(throws.length % 2)
-                ? "rzut kostką z liczbami"
-                : "rzut kostką wydarzeń"
+                ? `${t("throw dice with numbers")}`
+                : `${t("throw event dice")}`
               : ""
           }`}</h3>
           <StatsBoard
@@ -201,7 +206,7 @@ const Dashboard = () => {
               className="d-block mt-3"
               onClick={handleSaveToFileClick}
             >
-              Zapisz do pliku
+              {t("Save to file")}
             </Button>
           )}
           {!gameContext.token && (
@@ -210,17 +215,17 @@ const Dashboard = () => {
               className="mt-3"
               onClick={handleGenerateStats}
             >
-              Generuj statystyki gry
+              {t("Generate statistics")}
             </Button>
           )}
-          {localStats && <GameHistory game={localStats} load={false} />}
+          {localStats && <GameHistory game={localStats} load={true} />}
         </>
       ) : (
         <>
           <PlayersForm setPlayers={setPlayers} players={players} />
           <Form.Check
             type="switch"
-            label="Dodatek: Miasta i rycerze"
+            label={t(`Extension: Cities and knights`)}
             id="disabled-custom-switch"
             className="mt-3"
             value={isExtension}
@@ -232,19 +237,19 @@ const Dashboard = () => {
               className="mt-3 d-block"
               onClick={handleStart}
             >
-              Zacznij gre
+              {t("Start the game")}
             </Button>
           )}
         </>
       )}
       {isLocallySaved && (
         <Alert variant="success" className="mt-3">
-          Poprawnie zapisano dane
+          {t("Correctly saved data")}
         </Alert>
       )}
       {gameContext.token && (
         <Button variant="primary" className="mt-3" onClick={handleSaveData}>
-          Zapisz dane jeśli chcesz sprawdzić historię gry
+          {t("Save data of game if you want to check history")}
         </Button>
       )}
     </Container>

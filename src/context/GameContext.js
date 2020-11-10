@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
 import Cookies from "universal-cookie";
+import { languages } from "constants/translations";
 
 const cookies = new Cookies();
 
@@ -13,6 +14,7 @@ export const GameContextProvider = (props) => {
   const [queue, setQueue] = useState([]);
   const [isChanged, setIsChanged] = useState(false);
   const [gameId, setGameId] = useState("");
+  const [language, setLanguage] = useState(languages.EN);
 
   const game = {
     throws,
@@ -22,7 +24,11 @@ export const GameContextProvider = (props) => {
     queue,
     isChanged,
     gameId,
+    language,
     token: cookies.get("token"),
+    setLanguage: (language) => {
+      setLanguage(language);
+    },
     saveGameStats: ({
       throws,
       players,

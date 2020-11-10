@@ -1,11 +1,15 @@
 import React from "react";
 import { DiceThrowsStats, ResourcesStats, PlayerBuilding } from "../";
 import { Alert } from "react-bootstrap";
+import { useTranslation } from "hooks";
 
 const PlayerStats = ({ player }) => {
+  const t = useTranslation();
   return (
     <>
-      <Alert className="mb-0  mt-3 py-4 h4 text-warning bg-primary  text-center">{`Statystki gracza ${player.name}`}</Alert>
+      <Alert className="mb-0  mt-3 py-4 h4 text-warning bg-primary  text-center">{`${t(
+        "Player stats:"
+      )} ${player.name}`}</Alert>
       <DiceThrowsStats
         stats={player.stats}
         countOfDiceRolls={Object.keys(player.stats)
@@ -16,7 +20,7 @@ const PlayerStats = ({ player }) => {
       <Alert
         variant="dark"
         className="text-primary bg-warning mb-0 py-4 h4 text-center"
-      >{`Budowle gracza ${player.name}`}</Alert>
+      >{`${t("Player buildings")} ${player.name}`}</Alert>
       {player.buildings.map((building) => (
         <PlayerBuilding building={building} key={building._id} />
       ))}

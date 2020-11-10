@@ -15,7 +15,9 @@ const DiceThrowsStats = ({ stats, countOfDiceRolls }) => {
     <Accordion>
       <Card.Header>
         <Accordion.Toggle as={Button} variant="link" eventKey="0">
-          <h5 className="text-dark">{`Statystyki rzutów (łącznie: ${countOfDiceRolls})`}</h5>
+          <h5 className="text-dark">{`${t("Throws stats")} (${t(
+            "total"
+          )}: ${countOfDiceRolls})`}</h5>
         </Accordion.Toggle>
       </Card.Header>
       <Accordion.Collapse eventKey="0">

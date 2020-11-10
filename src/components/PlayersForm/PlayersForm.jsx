@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
-import { emptyDiceStats } from "constants/diceNumbers";
-import { FormGroup, CardForm } from "../";
+import { Form, Button } from "react-bootstrap";
+import { FormGroup } from "../";
+import { useTranslation } from "hooks";
 
 const PlayersForm = ({ setPlayers, players }) => {
   const [validated, setValidated] = useState("");
-
   const [name, setName] = useState("");
   const [index, setIndex] = useState("1");
+
+  const t = useTranslation();
 
   useEffect(() => {
     setIndex(players.length + 1);
@@ -29,24 +30,23 @@ const PlayersForm = ({ setPlayers, players }) => {
   };
   return (
     <Form validated={validated} noValidate onSubmit={handleSubmit}>
-      <Form.Label>Dodaj gracza</Form.Label>
+      <Form.Label>{t("Add player")}</Form.Label>
       <FormGroup
         type="text"
         value={name}
         setValue={setName}
-        placeholder="Imię"
-        invalid="Podaj imie gracza"
+        placeholder={t("Name")}
+        invalid={t("Put player name!")}
       />
       <FormGroup
         type="number"
         value={index}
         setValue={setIndex}
-        placeholder="Który w kolejce"
-        invalid="Podaj który w kolejce jest gracz"
+        placeholder={t("Which in queue")}
         disabled
       />
 
-      <Button type="submit">Dodaj gracza</Button>
+      <Button type="submit">{t("Add player")}</Button>
     </Form>
   );
 };

@@ -30,7 +30,7 @@ const ListOfPlayers = ({ players, setPlayers, isExtension }) => {
   };
 
   const message = players.length ? null : (
-    <Alert variant="info">Brak graczy</Alert>
+    <Alert variant="info">{t("There is no any players")}</Alert>
   );
 
   const handleUpgradeBuilding = (building) => {
@@ -162,7 +162,7 @@ const ListOfPlayers = ({ players, setPlayers, isExtension }) => {
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant="link" eventKey="0">
-            Lista graczy
+            {t("Players")}
           </Accordion.Toggle>
         </Card.Header>
 
@@ -178,7 +178,9 @@ const ListOfPlayers = ({ players, setPlayers, isExtension }) => {
                   >
                     <StyledPlayerInfo>
                       <h4 className="mb-0">{name}</h4>
-                      <p className="ml-2 mb-0">W kolejce: {index}</p>
+                      <p className="ml-2 mb-0">
+                        {t("In queue:")} {index}
+                      </p>
                       <Button
                         className="ml-3"
                         onClick={() => handleDelete(index)}
@@ -188,25 +190,25 @@ const ListOfPlayers = ({ players, setPlayers, isExtension }) => {
                       </Button>
                     </StyledPlayerInfo>
                     <StyledBuildingsContainer>
-                      <h5>Budynki gracza:</h5>
+                      <h5>{t("Buildings of the player:")}</h5>
                       {buildings.map(
                         ({ type, buildedInThrow, resources, id }) => (
                           <StyledBuilding>
                             <StyledBuildingTitle>
-                              <span className="text-bold">{type}</span>
-                              <span>{`${
-                                type === buildingsTypes[0]
-                                  ? " zbudowana w rzucie: "
-                                  : " zbudowane w rzucie: "
-                              }${buildedInThrow}`}</span>
+                              <span className="text-bold">{t(type)}</span>
+                              <span>{` ${t(
+                                "builded in tour"
+                              )}: ${buildedInThrow}`}</span>
                             </StyledBuildingTitle>
                             <StyledResources>
-                              <h6>Pola do których ma dostęp:</h6>
+                              <h6>{`${t("Resources by building")}:`}</h6>
                               <StyledResourcesContainer>
                                 {resources.map(({ type, value }) => (
                                   <StyledResource>
                                     <p>{t(type)}</p>
-                                    <p className="ml-1">przy: {value}</p>
+                                    <p className="ml-1">
+                                      {t("by:")} {value}
+                                    </p>
                                   </StyledResource>
                                 ))}
                               </StyledResourcesContainer>
@@ -217,7 +219,7 @@ const ListOfPlayers = ({ players, setPlayers, isExtension }) => {
                                   handleChange(index, id, "upgrade")
                                 }
                               >
-                                Rozbuduj
+                                {t("Upgrade")}
                               </Button>
                             )}
                             {type === buildingsTypes[1] && (
@@ -226,7 +228,7 @@ const ListOfPlayers = ({ players, setPlayers, isExtension }) => {
                                   handleChange(index, id, "downgrade")
                                 }
                               >
-                                Degraduj
+                                {t("Downgrade")}
                               </Button>
                             )}
                             <Button

@@ -8,10 +8,12 @@ import {
 } from "../";
 import { GameContext } from "context";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "hooks";
 
 const GameHistory = ({ game, load }) => {
   const gameContext = useContext(GameContext);
   const history = useHistory();
+  const t = useTranslation();
 
   const handleLoadGame = () => {
     gameContext.saveGameStats({
@@ -33,15 +35,17 @@ const GameHistory = ({ game, load }) => {
         <Accordion.Toggle as={Button} variant="link" eventKey="0">
           <h2>{game.name}</h2>
         </Accordion.Toggle>
-        {load && (
+        {!load && (
           <Button className="d-inline-block ml-3" onClick={handleLoadGame}>
-            Wczytaj gre
+            {t("Load the game")}
           </Button>
         )}
       </Card.Header>
       <Accordion.Collapse eventKey="0">
         <Card.Body className="p-0">
-          <Alert className="mb-0 py-4 h4 text-warning bg-primary text-center">{`Statystki ogólne`}</Alert>
+          <Alert className="mb-0 py-4 h4 text-warning bg-primary text-center">{`${t(
+            "General statistics"
+          )}`}</Alert>
           <DiceThrowsStats
             game={game}
             stats={game.stats}

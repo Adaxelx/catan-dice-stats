@@ -1,7 +1,12 @@
-import dictionary from "constants/translations";
+import { useContext } from "react";
+import dictionary, { languages } from "constants/translations";
+import { GameContext } from "context";
 
 const useTranslation = () => {
+  const gameContext = useContext(GameContext);
+
   const translate = (word) => {
+    if (gameContext.language === languages.EN) return word;
     if (!isNaN(parseInt(word, 10))) return word;
     let translation = "";
     Object.keys(dictionary).forEach((key) => {

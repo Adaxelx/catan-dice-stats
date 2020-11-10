@@ -15,7 +15,9 @@ const ResourcesStats = ({ stats }) => {
     <Accordion>
       <Card.Header>
         <Accordion.Toggle as={Button} variant="link" eventKey="0">
-          <h5 className="text-dark">{`Statystyki surowców (łącznie: ${stats.total})`}</h5>
+          <h5 className="text-dark">{`${t("Resources stats")} (${t("total")}: ${
+            stats.total
+          })`}</h5>
         </Accordion.Toggle>
       </Card.Header>
       <Accordion.Collapse eventKey="0">

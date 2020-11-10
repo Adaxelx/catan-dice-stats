@@ -5,8 +5,10 @@ import { Alert } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import qs from "query-string";
 import { GameContext } from "context";
+import { useTranslation } from "hooks";
 
 const History = () => {
+  const t = useTranslation();
   const [history, setHistory] = useState([]);
 
   const [count, setCount] = useState(0);
@@ -43,11 +45,11 @@ const History = () => {
   }
 
   const message = loading ? (
-    <Alert variant="info">Ładowanie...</Alert>
+    <Alert variant="info">{t("Loading...")}</Alert>
   ) : error ? (
     <Alert variant="danger">{error}</Alert>
   ) : count === 0 ? (
-    <Alert variant="info">Brak gier</Alert>
+    <Alert variant="info">{t("You do not have any games")}</Alert>
   ) : null;
 
   return (

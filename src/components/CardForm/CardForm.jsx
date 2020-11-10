@@ -139,13 +139,13 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant="link" eventKey="0">
-            Dodaj budowle
+            {t("Add building")}
           </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey="0" as={Card.Body}>
           <Form validated={validated} noValidate onSubmit={handleSubmit}>
             <Form.Group controlId="exampleForm.ControlSelect1">
-              <Form.Label>Wybierz typ budowli</Form.Label>
+              <Form.Label>{t("Choose type of building")}</Form.Label>
               <Form.Control
                 as="select"
                 required
@@ -154,13 +154,13 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
               >
                 {buildingsTypes.map((typeVal) => (
                   <option value={typeVal} key={typeVal}>
-                    {typeVal}
+                    {t(typeVal)}
                   </option>
                 ))}
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlSelect1">
-              <Form.Label>Wybierz gracza</Form.Label>
+              <Form.Label>{t("Choose player")}</Form.Label>
               <Form.Control
                 as="select"
                 required
@@ -197,7 +197,7 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
                 </StyledTile>
               ))}
             </StyledBoard>
-            <p>Aktualnie dodane surowce:</p>
+            <p>{t("Actually added resources:")}</p>
             <div className="d-flex">
               {localResources.map(({ type, value }, i) => (
                 <p className="mr-1" key={type + value + i}>
@@ -205,11 +205,11 @@ const CardForm = ({ isExtension, players, setPlayers, throws }) => {
                 </p>
               ))}
             </div>
-            <Button onClick={handleLocalAdd}>Dodaj surowiec</Button>
+            <Button onClick={handleLocalAdd}>{t("Add resource")}</Button>
             <Button onClick={() => setLocalResources([])} className="mx-1">
-              Resetuj
+              {t("Reset")}
             </Button>
-            <Button type="submit">Dodaj budowle</Button>
+            <Button type="submit">{t("Add building")}</Button>
           </Form>
         </Accordion.Collapse>
       </Card>

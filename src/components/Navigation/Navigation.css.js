@@ -61,7 +61,6 @@ export const StyledNavContent = styled.nav`
   top: 0;
   left: 0;
   transform-origin: top right;
-
   ${({ isOpen }) => (isOpen ? openedContent : closeContent)};
 `;
 
@@ -78,4 +77,10 @@ export const StyledListItem = styled(Link)`
   margin-bottom: 0.5rem;
   font-size: 1.5rem;
   color: white;
+`;
+
+export const StyledLanguageBar = styled.div`
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
 `;

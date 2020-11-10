@@ -10,17 +10,17 @@ const HistoryOfThrows = ({ history, longestStreak, players, isExtension }) => {
     <Accordion>
       <Card.Header>
         <Accordion.Toggle as={Button} variant="link" eventKey="0">
-          <h5 className="text-dark">Historia rzutów</h5>
+          <h5 className="text-dark">{t("Throws history")}</h5>
         </Accordion.Toggle>
       </Card.Header>
       <Accordion.Collapse eventKey="0">
         <Card.Body className="p-0">
           <Row className="m-0">
             <Col xs={7}>
-              <h4 className="text-center">Liczba oczek</h4>
+              <h4 className="text-center">{t("Count of pips")}</h4>
             </Col>
             <Col xs={5}>
-              <h4 className="text-center">Gracz</h4>
+              <h4 className="text-center">{t("Player")}</h4>
             </Col>
           </Row>
           {history.map(({ value, player, _id: id }, i) => {
