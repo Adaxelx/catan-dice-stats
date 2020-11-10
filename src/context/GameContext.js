@@ -1,4 +1,7 @@
 import React, { createContext, useState } from "react";
+import Cookies from "universal-cookie";
+
+const cookies = new Cookies();
 
 export const GameContext = createContext({});
 
@@ -19,6 +22,7 @@ export const GameContextProvider = (props) => {
     queue,
     isChanged,
     gameId,
+    token: cookies.get("token"),
     saveGameStats: ({
       throws,
       players,

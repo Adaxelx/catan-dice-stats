@@ -12,9 +12,10 @@ import {
   PlayersForm,
   CardForm,
   ListOfPlayers,
+  GameHistory,
 } from "components";
 
-import { saveFile } from "functions";
+import { saveFile, generateStats } from "functions";
 import { GameContext } from "context";
 
 const Dashboard = () => {
@@ -32,35 +33,40 @@ const Dashboard = () => {
   const [success, setSuccess] = useState(false);
   const [isLocallySaved, setIsLocallySaved] = useState(false);
 
+  const [localStats, setLocalStats] = useState(null);
+
   const gameContext = useContext(GameContext);
 
   const handleSaveToFile = useCallback(async () => {
-    setLoading(true);
-    setError(false);
-    const throwsApi = throws.map((throwDice) => ({
-      ...throwDice,
-      player:
-        typeof throwDice.player === "number"
-          ? throwDice.player
-          : throwDice.player.index,
-    }));
+    if (gameContext.token) {
+      setLoading(true);
+      setError(false);
+      const throwsApi = throws.map((throwDice) => ({
+        ...throwDice,
+        player:
+          typeof throwDice.player === "number"
+            ? throwDice.player
+            : throwDice.player.index,
+      }));
 
-    try {
-      const response = await saveFile(
-        {
-          throws: throwsApi,
-          players: players,
-          isExtension,
-        },
-        gameId
-      );
-      setGameId(response.id);
-      setSuccess(response.message);
-    } catch (err) {
-      setError(true);
+      try {
+        const response = await saveFile(
+          gameContext.token,
+          {
+            throws: throwsApi,
+            players: players,
+            isExtension,
+          },
+          gameId
+        );
+        setGameId(response.id);
+        setSuccess(response.message);
+      } catch (err) {
+        setError(err.message);
+      }
+      setLoading(false);
     }
-    setLoading(false);
-  }, [gameId, isExtension, players, throws]);
+  }, [gameContext.token, gameId, isExtension, players, throws]);
 
   useEffect(() => {
     const {
@@ -99,7 +105,7 @@ const Dashboard = () => {
   const message = loading ? (
     <Alert variant="info">Trwa przesyłanie...</Alert>
   ) : error ? (
-    <Alert variant="danger">Błąd przesyłania</Alert>
+    <Alert variant="danger">{error}</Alert>
   ) : success ? (
     <Alert variant="success">{success}</Alert>
   ) : null;
@@ -127,6 +133,28 @@ const Dashboard = () => {
     }
     setQueue(queue);
     setIsStarted(true);
+  };
+
+  const handleGenerateStats = async () => {
+    setLoading(true);
+    const throwsApi = throws.map((throwDice) => ({
+      ...throwDice,
+      player:
+        typeof throwDice.player === "number"
+          ? throwDice.player
+          : throwDice.player.index,
+    }));
+    try {
+      const response = await generateStats({
+        throws: throwsApi,
+        players: players,
+        isExtension,
+      });
+      setLocalStats(response);
+    } catch (err) {
+      setError(err.message);
+    }
+    setLoading(false);
   };
 
   return (
@@ -166,14 +194,26 @@ const Dashboard = () => {
             handleSaveToFile={handleSaveToFile}
           />
           {message}
-          <Button
-            disabled={loading}
-            variant="primary"
-            className="d-block mt-3"
-            onClick={handleSaveToFileClick}
-          >
-            Zapisz do pliku
-          </Button>
+          {gameContext.token && (
+            <Button
+              disabled={loading}
+              variant="primary"
+              className="d-block mt-3"
+              onClick={handleSaveToFileClick}
+            >
+              Zapisz do pliku
+            </Button>
+          )}
+          {!gameContext.token && (
+            <Button
+              variant="primary"
+              className="mt-3"
+              onClick={handleGenerateStats}
+            >
+              Generuj statystyki gry
+            </Button>
+          )}
+          {localStats && <GameHistory game={localStats} load={false} />}
         </>
       ) : (
         <>
@@ -202,9 +242,11 @@ const Dashboard = () => {
           Poprawnie zapisano dane
         </Alert>
       )}
-      <Button variant="primary" className="mt-3" onClick={handleSaveData}>
-        Zapisz dane jeśli chcesz sprawdzić historię gry
-      </Button>
+      {gameContext.token && (
+        <Button variant="primary" className="mt-3" onClick={handleSaveData}>
+          Zapisz dane jeśli chcesz sprawdzić historię gry
+        </Button>
+      )}
     </Container>
   );
 };

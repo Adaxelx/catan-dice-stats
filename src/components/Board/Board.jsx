@@ -14,7 +14,9 @@ const Board = ({
       ...prevState,
       { value: id, player: activePlayer, id: prevState.length },
     ]);
-    if (throws.length % 3 === 2) {
+    if (throws.length % 6 === 5 && isExtension) {
+      handleSaveToFile();
+    } else if (throws.length % 3 === 2 && !isExtension) {
       handleSaveToFile();
     }
   };
