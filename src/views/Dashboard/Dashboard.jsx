@@ -169,6 +169,7 @@ const Dashboard = () => {
           <Button
             disabled={loading}
             variant="primary"
+            className="d-block mt-3"
             onClick={handleSaveToFileClick}
           >
             Zapisz do pliku
@@ -186,7 +187,11 @@ const Dashboard = () => {
             onClick={() => setIsExtension((prevState) => !prevState)}
           />
           {!!players.length && (
-            <Button variant="secondary" className="mt-3" onClick={handleStart}>
+            <Button
+              variant="secondary"
+              className="mt-3 d-block"
+              onClick={handleStart}
+            >
               Zacznij gre
             </Button>
           )}

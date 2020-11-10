@@ -14,7 +14,7 @@ const Board = ({
       ...prevState,
       { value: id, player: activePlayer, id: prevState.length },
     ]);
-    if (throws.length % 3 === 0) {
+    if (throws.length % 3 === 2) {
       handleSaveToFile();
     }
   };
