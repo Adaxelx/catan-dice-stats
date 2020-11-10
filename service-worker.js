@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/catan-dice-stats/precache-manifest.2103ad06208cf34adc13cfc6757d58a4.js"
+  "/catan-dice-stats/precache-manifest.51f4d6a55c958ea393df9a91e2f4875c.js"
 );
 
 self.addEventListener('message', (event) => {
