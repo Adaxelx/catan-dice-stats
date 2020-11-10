@@ -1,6 +1,6 @@
 {
-  "homepage": "https://adaxelx.github.io/dice-stats/",
-  "name": "dice-stats",
+  "homepage": "https://adaxelx.github.io/catan-dice-stats/",
+  "name": "catan-dice-stats",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
