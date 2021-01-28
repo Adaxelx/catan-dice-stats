@@ -121,8 +121,8 @@ As I mentioned before there is also the same statistics for every player and bui
 
 ## Tech/framework used
 
-#### Frontend build with React.js
+#### Frontend built with React.js
 
-#### Backend build with Node.js + Express
+#### Backend built with Node.js + Express
 
 
