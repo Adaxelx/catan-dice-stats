@@ -16,7 +16,7 @@ import {
 } from "components";
 
 import { saveFile, generateStats } from "functions";
-import { GameContext } from "context";
+import { GameContext, UserContext } from "context";
 import { useTranslation } from "hooks";
 
 const Dashboard = () => {
@@ -39,9 +39,10 @@ const Dashboard = () => {
   const [localStats, setLocalStats] = useState(null);
 
   const gameContext = useContext(GameContext);
+  const user = useContext(UserContext);
 
   const handleSaveToFile = useCallback(async () => {
-    if (gameContext.token) {
+    if (user.token) {
       setLoading(true);
       setError(false);
       const throwsApi = throws.map((throwDice) => ({
@@ -54,7 +55,7 @@ const Dashboard = () => {
 
       try {
         const response = await saveFile(
-          gameContext.token,
+          user.token,
           {
             throws: throwsApi,
             players: players,
@@ -69,7 +70,7 @@ const Dashboard = () => {
       }
       setLoading(false);
     }
-  }, [gameContext.token, gameId, isExtension, players, throws]);
+  }, [user.token, gameId, isExtension, players, throws]);
 
   useEffect(() => {
     const {
@@ -199,7 +200,7 @@ const Dashboard = () => {
             handleSaveToFile={handleSaveToFile}
           />
           {message}
-          {gameContext.token && (
+          {user.token && (
             <Button
               disabled={loading}
               variant="primary"
@@ -209,7 +210,7 @@ const Dashboard = () => {
               {t("Save to file")}
             </Button>
           )}
-          {!gameContext.token && (
+          {!user.token && (
             <Button
               variant="primary"
               className="mt-3"
@@ -247,7 +248,7 @@ const Dashboard = () => {
           {t("Correctly saved data")}
         </Alert>
       )}
-      {gameContext.token && (
+      {user.token && (
         <Button variant="primary" className="mt-3" onClick={handleSaveData}>
           {t("Save data of game if you want to check history")}
         </Button>

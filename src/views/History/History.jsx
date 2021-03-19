@@ -4,7 +4,7 @@ import { GameHistory, Pagination } from "components";
 import { Alert } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import qs from "query-string";
-import { GameContext } from "context";
+import { UserContext } from "context";
 import { useTranslation } from "hooks";
 
 const History = () => {
@@ -18,13 +18,13 @@ const History = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const gameContext = useContext(GameContext);
+  const user = useContext(UserContext);
 
   useEffect(() => {
     const fetchHistory = async () => {
       setLoading(true);
       try {
-        const res = await getHistory(gameContext.token, page);
+        const res = await getHistory(user.token, page);
         setHistory(res.data);
         setCount(res.count);
       } catch (err) {
@@ -33,7 +33,7 @@ const History = () => {
       setLoading(false);
     };
     fetchHistory();
-  }, [gameContext.token, page]);
+  }, [user.token, page]);
 
   const queryParams = qs.parse(location.search, { parseNumbers: true });
   if (

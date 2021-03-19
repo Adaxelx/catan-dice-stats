@@ -1,5 +1,28 @@
 import proxy from "config/api";
 
+export const loginUser = async (login, password) => {
+  const url = `${proxy.LOGIN}`;
+
+  const headers = {
+    "Content-Type": "application/json",
+  };
+
+  const response = await fetch(url, {
+    headers,
+    method: "POST",
+    body: JSON.stringify({ login, password }),
+  });
+
+  if (response.status === 201) {
+    return response.json();
+  }
+  if (response.status === 403) {
+    const errorMessage = await response.json();
+    throw new Error(errorMessage.message);
+  }
+  throw new Error("Błąd przesyłania.");
+};
+
 export const saveFile = async (token, gameData, id) => {
   const url = id ? `${proxy.GAME}edit/${id}/` : `${proxy.GAME}add/`;
 
