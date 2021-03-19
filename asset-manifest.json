@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/catan-dice-stats/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/catan-dice-stats/static/js/main.859b4a7f.chunk.js",
-    "main.js.map": "/catan-dice-stats/static/js/main.859b4a7f.chunk.js.map",
+    "main.js": "/catan-dice-stats/static/js/main.f6d8e1e8.chunk.js",
+    "main.js.map": "/catan-dice-stats/static/js/main.f6d8e1e8.chunk.js.map",
     "runtime-main.js": "/catan-dice-stats/static/js/runtime-main.c1a53d94.js",
     "runtime-main.js.map": "/catan-dice-stats/static/js/runtime-main.c1a53d94.js.map",
     "static/css/2.8aa5a7f8.chunk.css": "/catan-dice-stats/static/css/2.8aa5a7f8.chunk.css",
-    "static/js/2.32648951.chunk.js": "/catan-dice-stats/static/js/2.32648951.chunk.js",
-    "static/js/2.32648951.chunk.js.map": "/catan-dice-stats/static/js/2.32648951.chunk.js.map",
+    "static/js/2.61376789.chunk.js": "/catan-dice-stats/static/js/2.61376789.chunk.js",
+    "static/js/2.61376789.chunk.js.map": "/catan-dice-stats/static/js/2.61376789.chunk.js.map",
     "index.html": "/catan-dice-stats/index.html",
-    "precache-manifest.51f4d6a55c958ea393df9a91e2f4875c.js": "/catan-dice-stats/precache-manifest.51f4d6a55c958ea393df9a91e2f4875c.js",
+    "precache-manifest.75b56b2718fa41f81a75cb2825c700e0.js": "/catan-dice-stats/precache-manifest.75b56b2718fa41f81a75cb2825c700e0.js",
     "service-worker.js": "/catan-dice-stats/service-worker.js",
     "static/css/2.8aa5a7f8.chunk.css.map": "/catan-dice-stats/static/css/2.8aa5a7f8.chunk.css.map",
     "static/css/main.5ecd60fb.chunk.css.map": "/catan-dice-stats/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.32648951.chunk.js.LICENSE.txt": "/catan-dice-stats/static/js/2.32648951.chunk.js.LICENSE.txt",
+    "static/js/2.61376789.chunk.js.LICENSE.txt": "/catan-dice-stats/static/js/2.61376789.chunk.js.LICENSE.txt",
     "static/media/brick.png": "/catan-dice-stats/static/media/brick.b65d1084.png",
     "static/media/coin.jpeg": "/catan-dice-stats/static/media/coin.a3395179.jpeg",
     "static/media/grain.png": "/catan-dice-stats/static/media/grain.e87fce0a.png",
@@ -25,8 +25,8 @@
   "entrypoints": [
     "static/js/runtime-main.c1a53d94.js",
     "static/css/2.8aa5a7f8.chunk.css",
-    "static/js/2.32648951.chunk.js",
+    "static/js/2.61376789.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.859b4a7f.chunk.js"
+    "static/js/main.f6d8e1e8.chunk.js"
   ]
 }

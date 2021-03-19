@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "146dd8f0cc45a24f71664262e96855ee",
+    "revision": "116278c4f03c64dfe07add4861efd414",
     "url": "/catan-dice-stats/index.html"
   },
   {
-    "revision": "7322967e3a7b13079ec0",
+    "revision": "0eeaf44fce0ccefb900a",
     "url": "/catan-dice-stats/static/css/2.8aa5a7f8.chunk.css"
   },
   {
-    "revision": "1d5d454a1cd486cd6d6c",
+    "revision": "c26f022f68b988f1cc3d",
     "url": "/catan-dice-stats/static/css/main.5ecd60fb.chunk.css"
   },
   {
-    "revision": "7322967e3a7b13079ec0",
-    "url": "/catan-dice-stats/static/js/2.32648951.chunk.js"
+    "revision": "0eeaf44fce0ccefb900a",
+    "url": "/catan-dice-stats/static/js/2.61376789.chunk.js"
   },
   {
     "revision": "1791acb1642d69fc44b630f1d87795fa",
-    "url": "/catan-dice-stats/static/js/2.32648951.chunk.js.LICENSE.txt"
+    "url": "/catan-dice-stats/static/js/2.61376789.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1d5d454a1cd486cd6d6c",
-    "url": "/catan-dice-stats/static/js/main.859b4a7f.chunk.js"
+    "revision": "c26f022f68b988f1cc3d",
+    "url": "/catan-dice-stats/static/js/main.f6d8e1e8.chunk.js"
   },
   {
     "revision": "42c14fa63d20a1b48b89",
